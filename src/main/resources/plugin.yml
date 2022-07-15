@@ -1,0 +1,9 @@
+name: VexKits
+version: '${project.version}'
+main: me.steveshat.vexkits.VexKits
+api-version: 1.8.8
+authors: [ steveshat ]
+description: VexKits Core Plugin
+commands:
+  vex:
+    description: Use to reload config
