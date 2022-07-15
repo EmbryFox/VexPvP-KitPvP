@@ -15,7 +15,7 @@ public class ScoreboardScoresGetter implements ScoreGetter {
         String rank = PlaceholderAPI.setPlaceholders(player, "%skript_rank%");
         String balance = PlaceholderAPI.setPlaceholders(player, "%skript_balance%");
         String kills = PlaceholderAPI.setPlaceholders(player, "%skript_kills%");
-        String deaths = PlaceholderAPI.setPlaceholders(player, "%skript_kills%");
+        String deaths = PlaceholderAPI.setPlaceholders(player, "%skript_deaths%");
         String kdr = PlaceholderAPI.setPlaceholders(player, "%skript_kdr%");
         String streak = PlaceholderAPI.setPlaceholders(player, "%skript_streak%");
 
