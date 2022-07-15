@@ -12,6 +12,7 @@ import java.util.LinkedList;
 public class ScoreboardScoresGetter implements ScoreGetter {
     @Override
     public void getScores(@NotNull LinkedList<String> linkedList, @NotNull Player player) {
+        String rank = PlaceholderAPI.setPlaceholders(player, ".skript_rank.");
         String balance = PlaceholderAPI.setPlaceholders(player, ".skript_balance.");
         String kills = PlaceholderAPI.setPlaceholders(player, ".skript_kills.");
         String deaths = PlaceholderAPI.setPlaceholders(player, ".skript_kills.");
@@ -19,6 +20,7 @@ public class ScoreboardScoresGetter implements ScoreGetter {
         String streak = PlaceholderAPI.setPlaceholders(player, ".skript_streak.");
 
         linkedList.add(Chat.format("&e"));
+        linkedList.add(Chat.format("&7 | &dRank: " + rank));
         linkedList.add(Chat.format("&7 | &dBalance: &a$" + balance));
         linkedList.add(Chat.format("&e"));
         linkedList.add(Chat.format("&7 | &dKills: &c" + kills));
