@@ -1,4 +1,4 @@
-package me.steveshat.vexkits;
+package me.steveshat.vexkits.chat;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
