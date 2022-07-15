@@ -28,7 +28,7 @@ public class ScoreboardScoresGetter implements ScoreGetter {
         linkedList.add(Chat.format("&7 | &dKDR: &c" + kdr));
         linkedList.add(Chat.format("&7 | &dStreak: &c" + streak));
         linkedList.add(Chat.format("&e"));
-        linkedList.add(Chat.format("&dvexmc.club"));
+        linkedList.add(Chat.format("&5vexmc.club"));
 
     }
 }
