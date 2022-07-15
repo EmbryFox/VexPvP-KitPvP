@@ -23,7 +23,7 @@ public final class VexKits extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ChatListener(), this);
         getConfig().options().copyDefaults();
         saveDefaultConfig();
-        ScoreboardHandler.configure(new ScoreboardTitleGetter(), new ScoreboardScoresGetter())
+        ScoreboardHandler.configure(new ScoreboardTitleGetter(), new ScoreboardScoresGetter());
 
 
     }
