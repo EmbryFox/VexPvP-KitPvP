@@ -21,12 +21,12 @@ public class ScoreboardScoresGetter implements ScoreGetter {
 
         linkedList.add(Chat.format("&e"));
         linkedList.add(Chat.format("&7 | &dRank: " + rank));
-        linkedList.add(Chat.format("&7 | &dBalance: &a$" + balance));
+        linkedList.add(Chat.format("&7 | &dBalance: &f$" + balance));
         linkedList.add(Chat.format("&e"));
-        linkedList.add(Chat.format("&7 | &dKills: &c" + kills));
-        linkedList.add(Chat.format("&7 | &dDeaths: &c" + deaths));
-        linkedList.add(Chat.format("&7 | &dKDR: &c" + kdr));
-        linkedList.add(Chat.format("&7 | &dStreak: &c" + streak));
+        linkedList.add(Chat.format("&7 | &dKills: &f" + kills));
+        linkedList.add(Chat.format("&7 | &dDeaths: &f" + deaths));
+        linkedList.add(Chat.format("&7 | &dKDR: &f" + kdr));
+        linkedList.add(Chat.format("&7 | &dStreak: &f" + streak));
         linkedList.add(Chat.format("&e"));
         linkedList.add(Chat.format("&5vexmc.club"));
 
