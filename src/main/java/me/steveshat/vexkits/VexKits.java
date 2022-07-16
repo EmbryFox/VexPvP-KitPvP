@@ -1,12 +1,12 @@
 package me.steveshat.vexkits;
 
 import me.steveshat.vexkits.chat.ChatListener;
+import me.steveshat.vexkits.listeners.AntiBuild;
 import me.steveshat.vexkits.luanrclientapi.ClientNametagProvider;
 import me.steveshat.vexkits.scoreboard.ScoreboardScoresGetter;
 import me.steveshat.vexkits.scoreboard.ScoreboardTitleGetter;
 import net.evilblock.cubed.scoreboard.ScoreboardHandler;
 import org.bukkit.Bukkit;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -16,12 +16,18 @@ public final class VexKits extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
-        Bukkit.getScheduler().runTaskTimer(this, new ClientNametagProvider(), 0L, 20L);
-        System.out.print("VexKits Loaded");
-        getServer().getPluginManager().registerEvents(new ChatListener(), this);
+        //Listeners
+        getServer().getPluginManager().registerEvents(new AntiBuild(), this);
+
+        //Commands
+
+        //Config
         getConfig().options().copyDefaults();
         saveDefaultConfig();
+
+        //Other
+        Bukkit.getScheduler().runTaskTimer(this, new ClientNametagProvider(), 0L, 20L);
+        getServer().getPluginManager().registerEvents(new ChatListener(), this);
         ScoreboardHandler.configure(new ScoreboardTitleGetter(), new ScoreboardScoresGetter());
 
 
