@@ -1,6 +1,7 @@
 package me.steveshat.vexkits;
 
 import me.steveshat.vexkits.chat.ChatListener;
+import me.steveshat.vexkits.luanrclientapi.ClientNametagProvider;
 import me.steveshat.vexkits.scoreboard.ScoreboardScoresGetter;
 import me.steveshat.vexkits.scoreboard.ScoreboardTitleGetter;
 import net.evilblock.cubed.scoreboard.ScoreboardHandler;
@@ -21,6 +22,7 @@ public final class VexKits extends JavaPlugin {
         getConfig().options().copyDefaults();
         saveDefaultConfig();
         ScoreboardHandler.configure(new ScoreboardTitleGetter(), new ScoreboardScoresGetter());
+        Bukkit.getScheduler().runTaskTimer(this, new ClientNametagProvider(), 0L, 20L);
 
 
     }

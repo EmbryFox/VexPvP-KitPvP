@@ -91,5 +91,19 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/cubed-bukkit-1.2.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>aquacoreapi</groupId>
+            <artifactId>aquacoreapi</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/AquaCoreAPI.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>LunarAPI</groupId>
+            <artifactId>LunarAPI</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/bukkitapi (1).jar</systemPath>
+        </dependency>
     </dependencies>
 </project>

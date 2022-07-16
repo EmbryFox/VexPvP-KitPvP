@@ -1,5 +1,7 @@
 package me.steveshat.vexkits.scoreboard;
 
+import me.activated.core.api.rank.RankData;
+import me.activated.core.plugin.AquaCoreAPI;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.steveshat.vexkits.Constants;
 import me.steveshat.vexkits.chat.Chat;
@@ -8,11 +10,15 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedList;
+import java.util.UUID;
 
 public class ScoreboardScoresGetter implements ScoreGetter {
+
     @Override
     public void getScores(@NotNull LinkedList<String> linkedList, @NotNull Player player) {
-        String rank = PlaceholderAPI.setPlaceholders(player, "%skript_rank%");
+
+        String rank = AquaCoreAPI.INSTANCE.getPlayerData(player.getUniqueId()).getHighestRank().getName();
+        String color = AquaCoreAPI.INSTANCE.getPlayerData(player.getUniqueId()).getNameColor();
         String balance = PlaceholderAPI.setPlaceholders(player, "%skript_balance%");
         String kills = PlaceholderAPI.setPlaceholders(player, "%skript_kills%");
         String deaths = PlaceholderAPI.setPlaceholders(player, "%skript_deaths%");
@@ -20,7 +26,7 @@ public class ScoreboardScoresGetter implements ScoreGetter {
         String streak = PlaceholderAPI.setPlaceholders(player, "%skript_streak%");
 
         linkedList.add(Chat.format("&e"));
-        linkedList.add(Chat.format("&7 | &dRank: " + rank));
+        linkedList.add(Chat.format("&7 | &dRank: " + color + rank));
         linkedList.add(Chat.format("&7 | &dBalance: &f$" + balance));
         linkedList.add(Chat.format("&e"));
         linkedList.add(Chat.format("&7 | &dKills: &f" + kills));
