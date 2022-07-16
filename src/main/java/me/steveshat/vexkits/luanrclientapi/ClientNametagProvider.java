@@ -23,12 +23,14 @@ public class ClientNametagProvider implements Runnable{
         List<String> lines = new ArrayList<>();
         Boolean mm = AquaCoreAPI.INSTANCE.getPlayerData(player.getUniqueId()).isInStaffMode();
         Boolean vanished = AquaCoreAPI.INSTANCE.getPlayerData(player.getUniqueId()).isVanished();
+        String name = AquaCoreAPI.INSTANCE.getGlobalPlayer(player.getUniqueId()).getName();
         String color = AquaCoreAPI.INSTANCE.getPlayerData(player.getUniqueId()).getNameColor();
 
         if (mm) {
             lines.add(Chat.format("&7[ModMode]"));
         }
         lines.add(Chat.format((vanished ? "&7&o*" : color) + player.getDisplayName()));
+        lines.add(Chat.format("&c❤ " + player.getHealth()));
         return lines;
     }
 }

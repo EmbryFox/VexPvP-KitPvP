@@ -17,12 +17,12 @@ public final class VexKits extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+        Bukkit.getScheduler().runTaskTimer(this, new ClientNametagProvider(), 0L, 20L);
         System.out.print("VexKits Loaded");
         getServer().getPluginManager().registerEvents(new ChatListener(), this);
         getConfig().options().copyDefaults();
         saveDefaultConfig();
         ScoreboardHandler.configure(new ScoreboardTitleGetter(), new ScoreboardScoresGetter());
-        Bukkit.getScheduler().runTaskTimer(this, new ClientNametagProvider(), 0L, 20L);
 
 
     }
