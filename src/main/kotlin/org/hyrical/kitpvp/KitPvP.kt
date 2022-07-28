@@ -13,6 +13,7 @@ import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
+import org.hyrical.kitpvp.announcer.Announcer
 import org.hyrical.kitpvp.commands.ReloadCommand
 import org.hyrical.kitpvp.commands.ToggleDeathMessageCommand
 import org.hyrical.kitpvp.kits.Kit
@@ -38,7 +39,6 @@ class KitPvP : JavaPlugin() {
     lateinit var mongoConnectionPool: MongoConnectionPool
 
     lateinit var dataHandler: DataHandler
-    lateinit var kitHandler: DataHandler
 
     override fun onEnable() {
         instance = this
@@ -73,6 +73,9 @@ class KitPvP : JavaPlugin() {
         server.pluginManager.registerEvents(DeathMessageListener(), this)
         server.pluginManager.registerEvents(JoinQuitListeners(), this)
         server.pluginManager.registerEvents(KillstreakListener(), this)
+
+        Announcer.load(config)
+        Announcer.runTaskTimer(this, 20L, config.getInt("announcer-delay").toLong())
     }
 
 
