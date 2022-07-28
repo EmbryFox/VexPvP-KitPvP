@@ -15,7 +15,7 @@ class JoinQuitListeners : Listener {
         translate("&8[&a+&8] &r${AquaCoreAPI.INSTANCE.getPlayerData(event.player.uniqueId).nameColor}${event.player.name} &r&7#${KitPvP.instance!!.config.getInt("joins")}")
         if (event.player.hasPlayedBefore()) return
 
-        KitPvP.instance!!.config.set("joins", KitPvP.instance.config.getInt("joins") + 1)
+        KitPvP.instance.config.set("joins", KitPvP.instance.config.getInt("joins") + 1)
     }
 
     @EventHandler

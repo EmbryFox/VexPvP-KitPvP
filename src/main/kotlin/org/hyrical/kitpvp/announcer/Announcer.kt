@@ -37,7 +37,7 @@ object Announcer : BukkitRunnable() {
     override fun run() {
         val message = announcements[i]
 
-        Bukkit.broadcastMessage(translate(message))
+        Bukkit.broadcastMessage(translate(KitPvP.instance.config.getString("announcer-prefix") + message))
 
         if (i == announcements.size - 1) {
             i = 0

@@ -62,6 +62,7 @@ scoreboard:
     typer-pause: 2000
 
 announcer-delay: 60 // Delay between announcements in seconds
+announcer-prefix: "  &5&lVex&d&lMC &r&7➥ "
 announcements:
   - "1"
   - "2"
