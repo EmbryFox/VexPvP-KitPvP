@@ -14,6 +14,7 @@ import org.hyrical.kitpvp.translate
 object KitsCommand {
 
     @Command(["kits"], description = "View all available kits")
+    @JvmStatic
     fun kits(player: Player) {
         player.sendMessage("§aAvailable kits:")
         player.sendMessage("§a- §fKit 1")
@@ -22,6 +23,7 @@ object KitsCommand {
     }
 
     @Command(["kit"], description = "Apply a kit")
+    @JvmStatic
     fun kit(player: Player, @Param("kit", "xzadsafaefreasrfaedfaerdfaedaedsadasdassdasdasd") kitName: String) {
         if (kitName == "xzadsafaefreasrfaedfaerdfaedaedsadasdassdasdasd") {
             kits(player)
@@ -65,6 +67,7 @@ object KitsCommand {
     }
 
     @Command(["kit admin create", "kits admin create"], permission = "kitpvp.admin.create")
+    @JvmStatic
     fun kitsAdmin(player: Player, @Param("kit") kitName: String) {
         if (KitsService.kits.containsKey(kitName)) {
             player sendMessage "&cKit already exists"
@@ -88,6 +91,7 @@ object KitsCommand {
     }
 
     @Command(["kit admin delete", "kits admin delete"], permission = "kitpvp.admin.delete")
+    @JvmStatic
     fun kitsAdminDelete(player: Player, @Param("kit") kitName: String) {
         if (!KitsService.kits.containsKey(kitName)) {
             player sendMessage "&cKit not found"
@@ -101,6 +105,7 @@ object KitsCommand {
     }
 
     @Command(["kit admin set", "kits admin set"], permission = "kitpvp.admin.set")
+    @JvmStatic
     fun kitsAdminSet(player: Player, @Param("kit") kitName: String) {
         if (!KitsService.kits.containsKey(kitName)) {
             player sendMessage "&cKit not found"
@@ -127,6 +132,7 @@ object KitsCommand {
     }
 
     @Command(["kit admin cooldown", "kits admin cooldown"], permission = "kitpvp.admin.cooldown")
+    @JvmStatic
     fun kitsAdminCooldown(player: Player, @Param("kit") kitName: String, @Param("cooldown") cooldown: String) {
         if (!KitsService.kits.containsKey(kitName)) {
             player sendMessage "&cKit not found"

@@ -65,9 +65,9 @@ class KitPvP : JavaPlugin() {
 
         ScoreboardHandler.configure(ScoreboardProvider.Title, ScoreboardProvider.Scores)
 
-        CommandHandler.registerClass(KitsCommand::class.java)
-        CommandHandler.registerClass(ToggleDeathMessageCommand::class.java)
-        CommandHandler.registerClass(ReloadCommand::class.java)
+        CommandHandler.registerClass(KitsCommand.javaClass)
+        CommandHandler.registerClass(ToggleDeathMessageCommand.javaClass)
+        CommandHandler.registerClass(ReloadCommand.javaClass)
 
         server.pluginManager.registerEvents(ProfileListener(), this)
         server.pluginManager.registerEvents(DeathMessageListener(), this)

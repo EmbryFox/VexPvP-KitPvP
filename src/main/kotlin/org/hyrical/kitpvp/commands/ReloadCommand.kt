@@ -9,6 +9,7 @@ import org.hyrical.kitpvp.sendMessage
 object ReloadCommand {
 
     @Command(["kitpvp-reload"], description = "Reloads the plugin", permission = "kitpvp.reload")
+    @JvmStatic
     fun reload(player: Player) {
         KitPvP.instance.reloadConfig()
         ScoreboardConfig.load()

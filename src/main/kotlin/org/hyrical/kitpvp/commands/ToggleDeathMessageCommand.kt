@@ -7,6 +7,7 @@ import org.hyrical.kitpvp.profiles.getProfile
 object ToggleDeathMessageCommand {
 
     @Command(["toggledeathmessage", "tdm"], description = "Toggle death message")
+    @JvmStatic
     fun toggleDeathMessage(player: Player) {
         val profile = player.getProfile()
 
