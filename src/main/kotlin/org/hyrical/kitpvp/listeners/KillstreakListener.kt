@@ -1,5 +1,7 @@
 package org.hyrical.kitpvp.listeners
 
+import net.evilblock.cubed.util.bukkit.Constants
+import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -7,6 +9,7 @@ import org.bukkit.event.Listener
 import org.bukkit.event.entity.PlayerDeathEvent
 import org.hyrical.kitpvp.profiles.Profile
 import org.hyrical.kitpvp.profiles.getProfile
+import org.hyrical.kitpvp.translate
 
 class KillstreakListener : Listener {
 
@@ -25,6 +28,42 @@ class KillstreakListener : Listener {
     }
 
     private fun applyKillstreakRewards(profile: Profile, player: Player) {
-        TODO("Not yet implemented")
+        when (profile.killstreak) {
+            5 -> {
+                generateMessage(player, 5)
+            }
+            10 -> {
+                generateMessage(player, 10)
+            }
+            15 -> {
+                generateMessage(player, 20)
+            }
+            20 -> {
+                generateMessage(player, 20)
+            }
+            25 -> {
+                generateMessage(player, 20)
+            }
+            30 -> {
+                generateMessage(player, 20)
+            }
+            35 -> {
+                generateMessage(player, 20)
+            }
+            40 -> {
+                generateMessage(player, 20)
+            }
+            45 -> {
+                generateMessage(player, 20)
+            }
+            50 -> {
+                generateMessage(player, 20)
+            }
+        }
+    }
+
+    private fun generateMessage(player: Player, killstreak: Int){
+        Bukkit.broadcastMessage("&7[&d" + Constants.EXP_SYMBOL + "&7] &5${player.name} " +
+                "&fis now on a &d$killstreak &fkillstreak!")
     }
 }

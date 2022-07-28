@@ -15,6 +15,7 @@ import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import org.hyrical.kitpvp.announcer.Announcer
 import org.hyrical.kitpvp.commands.ReloadCommand
+import org.hyrical.kitpvp.commands.StatsCommand
 import org.hyrical.kitpvp.commands.ToggleDeathMessageCommand
 import org.hyrical.kitpvp.kits.Kit
 import org.hyrical.kitpvp.kits.KitsService
@@ -29,11 +30,13 @@ import org.hyrical.kitpvp.scoreboard.ScoreboardConfig
 import org.hyrical.kitpvp.scoreboard.ScoreboardProvider
 import org.hyrical.kitpvp.scoreboard.animation.type.LinkAnimation
 import org.hyrical.kitpvp.scoreboard.animation.type.TitleAnimation
+import java.util.*
 
 class KitPvP : JavaPlugin() {
 
     companion object {
         lateinit var instance: KitPvP
+        var random: Random = Random()
     }
 
     lateinit var mongoConnectionPool: MongoConnectionPool
@@ -68,6 +71,7 @@ class KitPvP : JavaPlugin() {
         CommandHandler.registerClass(KitsCommand.javaClass)
         CommandHandler.registerClass(ToggleDeathMessageCommand.javaClass)
         CommandHandler.registerClass(ReloadCommand.javaClass)
+        CommandHandler.registerClass(StatsCommand.javaClass)
 
         server.pluginManager.registerEvents(ProfileListener(), this)
         server.pluginManager.registerEvents(DeathMessageListener(), this)

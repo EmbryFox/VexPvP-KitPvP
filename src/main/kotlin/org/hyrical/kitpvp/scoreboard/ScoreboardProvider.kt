@@ -65,7 +65,7 @@ object ScoreboardProvider {
         override fun getScores(scores: LinkedList<String>, player: Player) {
             val profile = player.getProfile()
 
-            renderHeaderFooter(scores)
+            scores.add(translate("&a&7&m--------------------"))
             scores.add(translate("&5&lPLAYER"))
             scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fKills: &d${profile.kills}"))
             scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fDeaths: &d${profile.deaths}"))
