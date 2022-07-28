@@ -19,7 +19,7 @@ object Announcer : BukkitRunnable() {
             announcements.add(config.getStringList("announcements")[i].replace("%nl%", "\n"))
         }
 
-        Announcer.runTaskTimer(KitPvP.instance, 20L, config.getInt("announcer-delay").toLong())
+        Announcer.runTaskTimer(KitPvP.instance, 20L, config.getInt("announcer-delay").toLong() * 20)
     }
 
     /**
