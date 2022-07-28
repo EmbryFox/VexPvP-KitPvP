@@ -6,6 +6,7 @@ import org.bukkit.GameMode
 import org.bukkit.Location
 import org.bukkit.entity.Player
 import org.hyrical.kitpvp.koth.Event
+import org.hyrical.kitpvp.koth.serializer.KothSerializer
 import org.hyrical.kitpvp.koth.storage.KothHandler
 import java.util.*
 import kotlin.math.abs
@@ -68,7 +69,7 @@ class Koth(
     }
 
     fun save() {
-        KothHandler.handler.storeAsync(name, this)
+        KothHandler.handler.storeAsync(name, KothSerializer.kothTo64(this)!!)
         KothHandler.koths[name] = this
     }
 

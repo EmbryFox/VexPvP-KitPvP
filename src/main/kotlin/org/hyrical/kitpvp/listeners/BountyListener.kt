@@ -14,6 +14,8 @@ class BountyListener : Listener {
 
         val attackerProfile = attacker.getProfile()
         val victimProfile = victim.getProfile()
+
+
     }
 
 }
