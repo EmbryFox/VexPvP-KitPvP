@@ -11,7 +11,7 @@ import org.hyrical.kitpvp.profiles.getProfile
 import org.hyrical.kitpvp.sendMessage
 import org.hyrical.kitpvp.translate
 
-class KitsCommand {
+object KitsCommand {
 
     @Command(["kits"], description = "View all available kits")
     fun kits(player: Player) {

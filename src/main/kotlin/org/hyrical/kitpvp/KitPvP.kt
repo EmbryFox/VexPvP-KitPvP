@@ -13,6 +13,7 @@ import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
+import org.hyrical.kitpvp.commands.ReloadCommand
 import org.hyrical.kitpvp.commands.ToggleDeathMessageCommand
 import org.hyrical.kitpvp.kits.Kit
 import org.hyrical.kitpvp.kits.KitsService
@@ -66,6 +67,7 @@ class KitPvP : JavaPlugin() {
 
         CommandHandler.registerClass(KitsCommand::class.java)
         CommandHandler.registerClass(ToggleDeathMessageCommand::class.java)
+        CommandHandler.registerClass(ReloadCommand::class.java)
 
         server.pluginManager.registerEvents(ProfileListener(), this)
         server.pluginManager.registerEvents(DeathMessageListener(), this)

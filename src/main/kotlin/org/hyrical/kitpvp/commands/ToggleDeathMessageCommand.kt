@@ -4,7 +4,7 @@ import net.evilblock.cubed.command.Command
 import org.bukkit.entity.Player
 import org.hyrical.kitpvp.profiles.getProfile
 
-class ToggleDeathMessageCommand {
+object ToggleDeathMessageCommand {
 
     @Command(["toggledeathmessage", "tdm"], description = "Toggle death message")
     fun toggleDeathMessage(player: Player) {
