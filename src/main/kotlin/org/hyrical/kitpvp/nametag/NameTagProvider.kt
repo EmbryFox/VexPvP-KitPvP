@@ -28,7 +28,7 @@ object NameTagProvider : BukkitRunnable() {
         if (mm) {
             lines.add(translate("&7[ModMode]"))
         }
-        
+
         lines.add(translate(if (vanished) "&7&o*" else color + player.name))
 
         return lines
