@@ -1,0 +1,62 @@
+joins: 0
+
+scoreboard:
+  title:
+    static: "&b&l&nM&a&l&nI&e&l&nN&6&l&nE&c&l&nX&d&l&nD"
+    animated: false
+    animation:
+      - text: "&e&lMINE&e&lXD"
+        delay: 240
+      - text: "&6&lM&e&lINE&e&lXD"
+        delay: 240
+      - text: "&e&lM&6&lI&e&lNE&e&lXD"
+        delay: 240
+      - text: "&e&lMI&6&lN&e&lE&e&lXD"
+        delay: 240
+      - text: "&e&lMIN&6&lE&e&lXD"
+        delay: 240
+      - text: "&e&lMINE&6&lX&e&lD"
+        delay: 240
+      - text: "&e&lMINEX&6&lD"
+        delay: 240
+      - text: "&e&lMINEXD"
+        delay: 240
+      - text: "&e&lMINEX&f&lD"
+        delay: 240
+      - text: "&e&lMINE&f&lX&e&lD"
+        delay: 240
+      - text: "&e&lMIN&f&lE&e&lXD"
+        delay: 240
+      - text: "&e&lMI&f&lN&e&lEXD"
+        delay: 240
+      - text: "&e&lM&f&lI&e&lNEXD"
+        delay: 240
+      - text: "&f&lM&e&lINEXD"
+        delay: 240
+      - text: "&e&lMINEXD"
+        delay: 350
+      - text: "&6&lMINEXD"
+        delay: 350
+      - text: "&e&lMINEXD"
+        delay: 350
+      - text: "&f&lMINEXD"
+        delay: 350
+      - text: "&e&lMINEXD"
+        delay: 350
+      - text: "&6&lMINEXD"
+        delay: 350
+      - text: "&e&lMINEXD"
+        delay: 350
+  header:
+    - "&7&m--------------------"
+  footer:
+    - "&e&l{currentLink}"
+    - "&7&m--------------------"
+  links:
+    - "     play.minexd.com"
+    - "    store.minexd.com"
+    - "   discord.gg/minexd"
+  links-animation:
+    type: 'TYPER'
+    typer-interval: 100
+    typer-pause: 2000
