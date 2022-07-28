@@ -52,7 +52,7 @@ class KitPvP : JavaPlugin() {
         dataHandler = DataHandler
             .linkTypeToId<Kit>("test")
             .withConnectionPool<FlatfileConnectionPool> {
-                this.directory = dataFolder.absolutePath + "/kits"
+                this.directory = dataFolder.absolutePath
             }.withConnectionPool(mongoConnectionPool)
 
         ProfileService.service.load()
