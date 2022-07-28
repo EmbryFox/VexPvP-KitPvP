@@ -52,7 +52,9 @@ object KitsCommand {
             }
         }
 
-        if (player.inventory.size + kit.items.size > 36) {
+        val kitItems = kit.items.map { ItemStackSerializer.itemFrom64(it)!! }
+
+        if (player.inventory.size + kitItems.size > 36) {
             player sendMessage "&cYou do not have enough space in your inventory"
             return
         }
