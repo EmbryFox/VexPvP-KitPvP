@@ -14,7 +14,9 @@ import org.bukkit.ChatColor
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import org.hyrical.kitpvp.announcer.Announcer
+import org.hyrical.kitpvp.combat.CombatTagHandler
 import org.hyrical.kitpvp.commands.ReloadCommand
+import org.hyrical.kitpvp.commands.SpawnCommand
 import org.hyrical.kitpvp.commands.StatsCommand
 import org.hyrical.kitpvp.commands.ToggleDeathMessageCommand
 import org.hyrical.kitpvp.kits.Kit
@@ -73,11 +75,13 @@ class KitPvP : JavaPlugin() {
         CommandHandler.registerClass(ToggleDeathMessageCommand.javaClass)
         CommandHandler.registerClass(ReloadCommand.javaClass)
         CommandHandler.registerClass(StatsCommand.javaClass)
+        CommandHandler.registerClass(SpawnCommand::class.java)
 
         server.pluginManager.registerEvents(ProfileListener(), this)
         server.pluginManager.registerEvents(DeathMessageListener(), this)
         server.pluginManager.registerEvents(JoinQuitListeners(), this)
         server.pluginManager.registerEvents(KillstreakListener(), this)
+        server.pluginManager.registerEvents(CombatTagHandler, this)
 
         Announcer.load(config)
     }

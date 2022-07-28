@@ -63,7 +63,7 @@ class KillstreakListener : Listener {
     }
 
     private fun generateMessage(player: Player, killstreak: Int){
-        Bukkit.broadcastMessage("&7[&d" + Constants.EXP_SYMBOL + "&7] &5${player.name} " +
-                "&fis now on a &d$killstreak &fkillstreak!")
+        Bukkit.broadcastMessage(translate("&7[&d" + Constants.EXP_SYMBOL + "&7] &5${player.name} " +
+                "&fis now on a &d$killstreak &fkillstreak!"))
     }
 }

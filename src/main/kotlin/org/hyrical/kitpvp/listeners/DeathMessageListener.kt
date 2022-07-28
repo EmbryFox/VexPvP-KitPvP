@@ -18,9 +18,16 @@ class DeathMessageListener : Listener {
         val profile = event.entity.getProfile()
 
         profile.deaths++
+        profile.killstreak = 0
         profile.save()
 
-        val deathMessage: String = translate("&5${event.entity.killer.name}[&d${event.entity.killer.getProfile().kills}&5] &dhas killed &5${event.entity.name}[&d${event.entity.getProfile().kills}&5]")
+        var deathMessage: String? = null
+
+        if (event.entity.killer != null) {
+            deathMessage = translate("&5${event.entity.killer.name}[&d${event.entity.killer.getProfile().kills}&5] &dhas killed &5${event.entity.name}[&d${event.entity.getProfile().kills}&5]")
+        } else {
+            deathMessage = translate("&5${event.entity.name}[&d${event.entity.getProfile().kills}&5] &dhas died")
+        }
 
         Bukkit.getOnlinePlayers().stream().filter { it.canSeeKillMessages() }.forEach { it.sendMessage(deathMessage) }
 

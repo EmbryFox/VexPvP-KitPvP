@@ -29,7 +29,7 @@ data class Profile(
 }
 
 fun Player.canSeeKillMessages(): Boolean {
-    return ProfileService.cache[uniqueId]?.canSeeKillMessages ?: false
+    return ProfileService.cache[uniqueId]!!.canSeeKillMessages
 }
 
 fun Player.getProfile(): Profile {

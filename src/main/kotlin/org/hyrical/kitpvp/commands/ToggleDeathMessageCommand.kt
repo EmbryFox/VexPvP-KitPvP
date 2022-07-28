@@ -3,6 +3,7 @@ package org.hyrical.kitpvp.commands
 import net.evilblock.cubed.command.Command
 import org.bukkit.entity.Player
 import org.hyrical.kitpvp.profiles.getProfile
+import org.hyrical.kitpvp.translate
 
 object ToggleDeathMessageCommand {
 
@@ -12,7 +13,7 @@ object ToggleDeathMessageCommand {
         val profile = player.getProfile()
 
         profile.canSeeKillMessages = !profile.canSeeKillMessages
-        player.sendMessage("&eYou have ${if (profile.canSeeKillMessages) "&aenabled" else "&cdisabled"} &edeath messages.")
+        player.sendMessage(translate("&eYou have ${if (profile.canSeeKillMessages) "&aenabled" else "&cdisabled"} &edeath messages."))
         profile.save()
 
 

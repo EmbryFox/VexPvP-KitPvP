@@ -1,5 +1,6 @@
 package org.hyrical.kitpvp.scoreboard
 
+import me.activated.core.plugin.AquaCoreAPI
 import net.evilblock.cubed.scoreboard.ScoreGetter
 import net.evilblock.cubed.scoreboard.ScoreboardHandler
 import net.evilblock.cubed.scoreboard.TitleGetter
@@ -8,6 +9,8 @@ import net.evilblock.cubed.util.time.TimeUtil
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.hyrical.kitpvp.KitPvP
+import org.hyrical.kitpvp.combat.getCombatTagFormatted
+import org.hyrical.kitpvp.combat.isCombatTagged
 import org.hyrical.kitpvp.profiles.getProfile
 import org.hyrical.kitpvp.scoreboard.animation.type.LinkAnimation
 import org.hyrical.kitpvp.scoreboard.animation.type.TitleAnimation
@@ -71,10 +74,12 @@ object ScoreboardProvider {
             scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fDeaths: &d${profile.deaths}"))
             scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fBalance: &d${profile.balance}"))
             scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fKillstreak: &d${profile.killstreak}"))
+            if (player.isCombatTagged()) {
+                scores.add(translate( " &7" + Constants.DOT_SYMBOL + " &fCombat Tag: &d${player.getCombatTagFormatted()}"))
+            }
             scores.add(translate("&e"))
             scores.add(translate("&5&lSERVER"))
-            scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fPlayers: &d${Bukkit.getOnlinePlayers().size}"))
-            scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fJoins: &d${KitPvP.instance.config.getInt("joins")}"))
+            scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fPlayers: &d${Bukkit.getOnlinePlayers().filter { !AquaCoreAPI.INSTANCE.getPlayerData(it.uniqueId).isVanished }.size}"))
             scores.add(translate("&c"))
 
             renderHeaderFooter(scores)
