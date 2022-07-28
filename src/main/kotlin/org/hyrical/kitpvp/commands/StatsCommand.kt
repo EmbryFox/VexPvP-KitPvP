@@ -9,6 +9,7 @@ import org.hyrical.kitpvp.translate
 object StatsCommand {
 
     @Command(["stats"])
+    @JvmStatic
     fun stats(player: Player, @Param("target", "self") target: Player){
         val profile = target.getProfile()
 
