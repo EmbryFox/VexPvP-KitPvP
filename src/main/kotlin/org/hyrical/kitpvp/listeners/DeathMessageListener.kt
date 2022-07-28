@@ -24,9 +24,9 @@ class DeathMessageListener : Listener {
         var deathMessage: String? = null
 
         if (event.entity.killer != null) {
-            deathMessage = translate("&5${event.entity.killer.name}[&d${event.entity.killer.getProfile().kills}&5] &dhas killed &5${event.entity.name}[&d${event.entity.getProfile().kills}&5]")
+            deathMessage = translate("&d${event.entity.name}&7[&5${event.entity.getProfile().kills}&7] &fhas been killed &d${event.entity.killer.name}&7[&5${event.entity.killer.getProfile().kills}&7]")
         } else {
-            deathMessage = translate("&5${event.entity.name}[&d${event.entity.getProfile().kills}&5] &dhas died")
+            deathMessage = translate("&d${event.entity.name}&7[&5${event.entity.getProfile().kills}&7] &fhas died.")
         }
 
         Bukkit.getOnlinePlayers().stream().filter { it.canSeeKillMessages() }.forEach { it.sendMessage(deathMessage) }
