@@ -6,7 +6,7 @@ import org.bukkit.GameMode
 import org.bukkit.Location
 import org.bukkit.entity.Player
 import org.hyrical.kitpvp.koth.Event
-import org.hyrical.kitpvp.koth.serializer.KothSerializer
+import org.hyrical.kitpvp.koth.koth.serializer.LocationSerializer
 import org.hyrical.kitpvp.koth.storage.KothHandler
 import java.util.*
 import kotlin.math.abs
@@ -15,7 +15,7 @@ class Koth(
            override var name: String,
            override var active: Boolean,
            override var type: Event.EventType,
-           override var location: Location,
+           override var location: String,
            override var radius: Int
 ) : Event {
 
@@ -69,7 +69,7 @@ class Koth(
     }
 
     fun save() {
-        KothHandler.handler.storeAsync(name, KothSerializer.kothTo64(this)!!)
+        KothHandler.handler.storeAsync(name, this)
         KothHandler.koths[name] = this
     }
 
@@ -77,9 +77,11 @@ class Koth(
     fun onCap(location: Location): Boolean {
         if (!location.world.name.equals(location.world)) return false
 
-        val xDistance: Int = abs(location.blockX - this.location.blockX)
-        val yDistance: Int = abs(location.blockY - this.location.blockY)
-        val zDistance: Int = abs(location.blockZ - this.location.blockZ)
+        val loc = LocationSerializer.itemFrom64(this.location)!!
+
+        val xDistance: Int = abs(location.blockX - loc.blockX)
+        val yDistance: Int = abs(location.blockY - loc.blockY)
+        val zDistance: Int = abs(location.blockZ - loc.blockZ)
         return xDistance <= this.radius && yDistance <= 5 && zDistance <= this.radius
     }
 

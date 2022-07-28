@@ -5,6 +5,7 @@ import net.evilblock.cubed.command.data.parameter.Param
 import org.bukkit.entity.Player
 import org.hyrical.kitpvp.koth.Event
 import org.hyrical.kitpvp.koth.koth.Koth
+import org.hyrical.kitpvp.koth.koth.serializer.LocationSerializer
 import org.hyrical.kitpvp.koth.storage.KothHandler
 import org.hyrical.kitpvp.sendMessage
 
@@ -18,7 +19,7 @@ object KothCommands {
             return
         }
 
-        val koth = Koth(name, false, Event.EventType.KOTH, player.location, 3)
+        val koth = Koth(name, false, Event.EventType.KOTH, LocationSerializer.itemTo64(player.location)!!, 3)
         koth.save()
 
         player sendMessage "&aKoth created."

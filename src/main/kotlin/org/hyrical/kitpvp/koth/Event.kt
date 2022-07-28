@@ -10,7 +10,7 @@ interface Event {
 
     var type: EventType
 
-    var location: Location
+    var location: String
 
     var radius: Int
 
