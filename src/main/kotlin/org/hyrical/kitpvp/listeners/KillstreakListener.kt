@@ -2,6 +2,7 @@ package org.hyrical.kitpvp.listeners
 
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
+import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.PlayerDeathEvent
 import org.hyrical.kitpvp.profiles.Profile
@@ -9,7 +10,7 @@ import org.hyrical.kitpvp.profiles.getProfile
 
 class KillstreakListener : Listener {
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST)
     fun onDeath(event: PlayerDeathEvent) {
         if (event.entity.killer == null) return
 

@@ -3,6 +3,7 @@ package org.hyrical.kitpvp.scoreboard
 import net.evilblock.cubed.scoreboard.ScoreGetter
 import net.evilblock.cubed.scoreboard.ScoreboardHandler
 import net.evilblock.cubed.scoreboard.TitleGetter
+import net.evilblock.cubed.util.bukkit.Constants
 import net.evilblock.cubed.util.time.TimeUtil
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
@@ -64,14 +65,17 @@ object ScoreboardProvider {
         override fun getScores(scores: LinkedList<String>, player: Player) {
             val profile = player.getProfile()
 
+            renderHeaderFooter(scores)
             scores.add(translate("&5&lPLAYER"))
-            scores.add(translate("  &fKills: &d${profile.kills}"))
-            scores.add(translate("  &fDeaths: &d${profile.deaths}"))
-            scores.add(translate("  &fKillstreak: &d${profile.killstreak}"))
+            scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fKills: &d${profile.kills}"))
+            scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fDeaths: &d${profile.deaths}"))
+            scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fBalance: &d${profile.balance}"))
+            scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fKillstreak: &d${profile.killstreak}"))
             scores.add(translate("&e"))
             scores.add(translate("&5&lSERVER"))
-            scores.add(translate("  &fPlayers: &d${Bukkit.getOnlinePlayers().size}"))
-            scores.add(translate("  &fJoins: &d${KitPvP.instance.config.getInt("joins")}"))
+            scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fPlayers: &d${Bukkit.getOnlinePlayers().size}"))
+            scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fJoins: &d${KitPvP.instance.config.getInt("joins")}"))
+            scores.add(translate("&c"))
 
             renderHeaderFooter(scores)
 
