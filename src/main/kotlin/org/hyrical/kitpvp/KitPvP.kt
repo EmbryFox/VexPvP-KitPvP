@@ -22,6 +22,8 @@ import org.hyrical.kitpvp.commands.ToggleDeathMessageCommand
 import org.hyrical.kitpvp.kits.Kit
 import org.hyrical.kitpvp.kits.KitsService
 import org.hyrical.kitpvp.kits.command.KitsCommand
+import org.hyrical.kitpvp.koth.koth.Koth
+import org.hyrical.kitpvp.koth.storage.KothHandler
 import org.hyrical.kitpvp.leaderboard.KillLeaderboard
 import org.hyrical.kitpvp.listeners.DeathMessageListener
 import org.hyrical.kitpvp.listeners.JoinQuitListeners
@@ -56,7 +58,8 @@ class KitPvP : JavaPlugin() {
         }
 
         dataHandler = DataHandler
-            .linkTypeToId<Kit>("test")
+            .linkTypeToId<Koth>("koth")
+            .linkTypeToId<Kit>("kits")
             .withConnectionPool<FlatfileConnectionPool> {
                 this.directory = dataFolder.absolutePath
             }.withConnectionPool(mongoConnectionPool)
@@ -64,6 +67,7 @@ class KitPvP : JavaPlugin() {
         ProfileService.service.load()
         KitsService.handler.load()
         KitsService.load()
+        KothHandler.load()
 
         ScoreboardConfig.load()
         Tasks.asyncTimer(ScoreboardProvider.Title, 2L, 2L)
