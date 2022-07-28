@@ -22,6 +22,7 @@ import org.hyrical.kitpvp.commands.ToggleDeathMessageCommand
 import org.hyrical.kitpvp.kits.Kit
 import org.hyrical.kitpvp.kits.KitsService
 import org.hyrical.kitpvp.kits.command.KitsCommand
+import org.hyrical.kitpvp.leaderboard.KillLeaderboard
 import org.hyrical.kitpvp.listeners.DeathMessageListener
 import org.hyrical.kitpvp.listeners.JoinQuitListeners
 import org.hyrical.kitpvp.listeners.KillstreakListener
@@ -84,6 +85,8 @@ class KitPvP : JavaPlugin() {
         server.pluginManager.registerEvents(CombatTagHandler, this)
 
         Announcer.load(config)
+
+        KillLeaderboard.load()
     }
 
 

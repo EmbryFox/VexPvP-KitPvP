@@ -6,6 +6,7 @@ import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageByEntityEvent
+import org.bukkit.event.entity.PlayerDeathEvent
 import org.bukkit.event.player.PlayerQuitEvent
 import java.util.StringJoiner
 import java.util.UUID
@@ -35,6 +36,11 @@ object CombatTagHandler : Listener {
 
         event.player.health = 0.0
         combatTags.remove(event.player.uniqueId)
+    }
+
+    @EventHandler
+    fun onDeath(event: PlayerDeathEvent) {
+        combatTags.remove(event.entity.uniqueId)
     }
 }
 
