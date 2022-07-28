@@ -9,4 +9,10 @@ object KitsService {
 
     val handler = KitPvP.instance.dataHandler.createStoreType<String, Kit>(DataStoreType.FLATFILE)
     val kits = hashMapOf<String, Kit>()
+
+    fun load() {
+        for (kit in handler.retrieveAll()) {
+            kits[kit.name.lowercase()] = kit
+        }
+    }
 }

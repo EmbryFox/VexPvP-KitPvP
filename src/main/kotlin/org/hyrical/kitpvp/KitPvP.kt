@@ -60,6 +60,7 @@ class KitPvP : JavaPlugin() {
 
         ProfileService.service.load()
         KitsService.handler.load()
+        KitsService.load()
 
         ScoreboardConfig.load()
         Tasks.asyncTimer(ScoreboardProvider.Title, 2L, 2L)
