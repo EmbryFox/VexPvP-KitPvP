@@ -60,3 +60,9 @@ scoreboard:
     type: 'TYPER'
     typer-interval: 100
     typer-pause: 2000
+
+announcer-delay: 60 // Delay between announcements in seconds
+announcements:
+  - "1"
+  - "2"
+  - "3"
