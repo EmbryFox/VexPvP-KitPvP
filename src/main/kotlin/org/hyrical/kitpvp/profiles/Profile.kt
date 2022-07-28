@@ -1,8 +1,8 @@
 package org.hyrical.kitpvp.profiles
 
 import org.bukkit.entity.Player
-import org.hyrical.kitpvp.translate
-import java.util.UUID
+import java.util.*
+import kotlin.math.floor
 
 data class Profile(
     val uuid: UUID,
@@ -14,6 +14,7 @@ data class Profile(
     var canSeeKillMessages: Boolean = true,
     var premiumPass: Boolean = false,
     var kitCooldowns: MutableMap<String, Long> = mutableMapOf(),
+    var experience: Long = 0,
 ) {
     fun save() {
         ProfileService.service.storeAsync(uuid, this)
@@ -26,6 +27,14 @@ data class Profile(
         }
 
         return (kills.toDouble() / deaths).toString()
+    }
+
+    fun getLevel(): Int {
+        return floor((experience.toFloat() / 250.toFloat()).toDouble()).toInt()
+    }
+
+    fun getNextLevelExperience(): Int {
+        return (-(experience - (this.getLevel()+1)*250)).toInt();
     }
 }
 

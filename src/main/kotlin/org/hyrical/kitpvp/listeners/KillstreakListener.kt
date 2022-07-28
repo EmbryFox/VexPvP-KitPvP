@@ -9,6 +9,7 @@ import org.bukkit.event.Listener
 import org.bukkit.event.entity.PlayerDeathEvent
 import org.hyrical.kitpvp.profiles.Profile
 import org.hyrical.kitpvp.profiles.getProfile
+import org.hyrical.kitpvp.sendMessage
 import org.hyrical.kitpvp.translate
 
 class KillstreakListener : Listener {
@@ -21,10 +22,17 @@ class KillstreakListener : Listener {
 
         profile.kills++
         profile.killstreak++
+        val level = profile.getLevel()
+        profile.experience += 30
         profile.save()
 
-        applyKillstreakRewards(profile, event.entity.killer)
+        if (level != profile.getLevel()) {
+            event.entity.killer sendMessage "&fYou have leveled up to &d${profile.getLevel()}&f."
+        }
 
+        event.entity.killer sendMessage "&fYou need &d${profile.getNextLevelExperience()} &fXP to level up to level &5${profile.getLevel() + 1}&f."
+
+        applyKillstreakRewards(profile, event.entity.killer)
     }
 
     private fun applyKillstreakRewards(profile: Profile, player: Player) {
