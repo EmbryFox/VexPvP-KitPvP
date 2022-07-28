@@ -19,6 +19,12 @@ object ScoreboardConfig {
     var typerPause: Long = 0L
 
     fun load() {
+        links = arrayListOf()
+        header = arrayListOf()
+        footer = arrayListOf()
+
+        titleFrames = arrayListOf()
+
         val config = KitPvP.instance.config
 
         title = config.getString("scoreboard.title.static", "")
