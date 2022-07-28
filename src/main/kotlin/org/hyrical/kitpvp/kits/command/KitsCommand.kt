@@ -7,6 +7,7 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import org.hyrical.kitpvp.kits.Kit
 import org.hyrical.kitpvp.kits.KitsService
+import org.hyrical.kitpvp.kits.serializer.ItemStackSerializer
 import org.hyrical.kitpvp.profiles.getProfile
 import org.hyrical.kitpvp.sendMessage
 import org.hyrical.kitpvp.translate
@@ -56,7 +57,7 @@ object KitsCommand {
             return
         }
 
-        player.inventory.addItem(*kit.items.toTypedArray())
+        player.inventory.addItem(*kit.items.map { ItemStackSerializer.itemFrom64(it)!! }.toTypedArray())
 
         player sendMessage "&aYou have applied the kit &f${kit.name}"
 
@@ -74,11 +75,11 @@ object KitsCommand {
             return
         }
 
-        val items = arrayListOf<ItemStack>()
+        val items = arrayListOf<String>()
 
         player.inventory.contents.forEach { item ->
             if (item != null) {
-                items.add(item)
+                items.add(ItemStackSerializer.itemTo64(item)!!)
             }
         }
 
@@ -123,7 +124,7 @@ object KitsCommand {
         val kit = KitsService.kits[kitName]!!
 
         kit.items.clear()
-        kit.items.addAll(items)
+        kit.items.addAll(items.map { ItemStackSerializer.itemTo64(it)!! })
 
         KitsService.kits[kitName] = kit
         KitsService.handler.storeAsync(kitName, kit)
