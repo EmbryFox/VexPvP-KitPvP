@@ -10,6 +10,7 @@ data class Profile(
     var deaths: Int = 0,
     var killstreak: Int = 0,
     var balance: Double = 0.0,
+    var bounty: Double = 0.0,
     var canSeeKillMessages: Boolean = true,
     var premiumPass: Boolean = false,
     var kitCooldowns: MutableMap<String, Long> = mutableMapOf(),
@@ -21,7 +22,7 @@ data class Profile(
 
     fun getKDR(): String {
         if (deaths == 0) {
-            return "0"
+            return "0.0"
         }
 
         return (kills.toDouble() / deaths).toString()

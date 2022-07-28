@@ -1,27 +1,21 @@
 package org.hyrical.kitpvp
 
-import com.mongodb.MongoURI
 import io.github.nosequel.data.DataHandler
 import io.github.nosequel.data.connection.flatfile.FlatfileConnectionPool
-import io.github.nosequel.data.connection.mongo.AuthenticatedMongoConnectionPool
 import io.github.nosequel.data.connection.mongo.MongoConnectionPool
-import me.activated.core.plugin.AquaCoreAPI
 import net.evilblock.cubed.command.CommandHandler
 import net.evilblock.cubed.scoreboard.ScoreboardHandler
 import net.evilblock.cubed.util.bukkit.Tasks
-import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import org.hyrical.kitpvp.announcer.Announcer
 import org.hyrical.kitpvp.combat.CombatTagHandler
-import org.hyrical.kitpvp.commands.ReloadCommand
-import org.hyrical.kitpvp.commands.SpawnCommand
-import org.hyrical.kitpvp.commands.StatsCommand
-import org.hyrical.kitpvp.commands.ToggleDeathMessageCommand
+import org.hyrical.kitpvp.commands.*
 import org.hyrical.kitpvp.kits.Kit
 import org.hyrical.kitpvp.kits.KitsService
 import org.hyrical.kitpvp.kits.command.KitsCommand
+import org.hyrical.kitpvp.koth.commands.KothCommands
 import org.hyrical.kitpvp.koth.koth.Koth
 import org.hyrical.kitpvp.koth.storage.KothHandler
 import org.hyrical.kitpvp.leaderboard.KillLeaderboard
@@ -80,7 +74,10 @@ class KitPvP : JavaPlugin() {
         CommandHandler.registerClass(ToggleDeathMessageCommand.javaClass)
         CommandHandler.registerClass(ReloadCommand.javaClass)
         CommandHandler.registerClass(StatsCommand.javaClass)
-        CommandHandler.registerClass(SpawnCommand::class.java)
+        CommandHandler.registerClass(BountyCommand.javaClass)
+        CommandHandler.registerClass(SpawnCommand.javaClass)
+
+        CommandHandler.registerClass(KothCommands.javaClass)
 
         server.pluginManager.registerEvents(ProfileListener(), this)
         server.pluginManager.registerEvents(DeathMessageListener(), this)

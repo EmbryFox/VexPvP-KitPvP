@@ -3,7 +3,6 @@ package org.hyrical.kitpvp.kits.command
 import net.evilblock.cubed.command.Command
 import net.evilblock.cubed.command.data.parameter.Param
 import net.evilblock.cubed.util.time.TimeUtil
-import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import org.hyrical.kitpvp.kits.Kit
@@ -11,7 +10,6 @@ import org.hyrical.kitpvp.kits.KitsService
 import org.hyrical.kitpvp.kits.serializer.ItemStackSerializer
 import org.hyrical.kitpvp.profiles.getProfile
 import org.hyrical.kitpvp.sendMessage
-import org.hyrical.kitpvp.translate
 
 object KitsCommand {
 
@@ -36,23 +34,23 @@ object KitsCommand {
         val kit = KitsService.kits[kitName.lowercase()]
 
         if (kit == null) {
-            player sendMessage "&cKit not found"
+            player sendMessage "&cNo kit with the name ${kitName.capitalize()} found."
             return
         }
 
         if (!player.hasPermission(kit.permission)) {
-            player sendMessage "&cYou do not have permission to use this kit"
+            player sendMessage "&cYou do not have permission to use this kit."
             return
         }
 
         val playerProfile = player.getProfile()
 
-        Bukkit.broadcastMessage(TimeUtil.parseTime(kit.cooldown).toString())
-
         if (kit.cooldown != "") {
             if (playerProfile.kitCooldowns[kit.name] != null) {
                 if ((playerProfile.kitCooldowns[kit.name.lowercase()]!! + (TimeUtil.parseTime(kit.cooldown) * 1000)) > System.currentTimeMillis()) {
-                    player sendMessage "&cYou are on cooldown for this kit"
+                    val seconds = TimeUtil.parseTime(kit.cooldown)
+
+                    player sendMessage "&cYou are on cooldown for this kit for another &l${TimeUtil.formatIntoDetailedString(seconds)}&c."
                     return
                 } else {
                     playerProfile.kitCooldowns.remove(kit.name.lowercase())
@@ -63,13 +61,13 @@ object KitsCommand {
         val kitItems = kit.items.map { ItemStackSerializer.itemFrom64(it)!! }
 
         if (player.inventory.contents.filterNotNull().size + kitItems.size > 36) {
-            player sendMessage "&cYou do not have enough space in your inventory"
+            player sendMessage "&cYou do not have enough space in your inventory."
             return
         }
 
         player.inventory.addItem(*kit.items.map { ItemStackSerializer.itemFrom64(it)!! }.toTypedArray())
 
-        player sendMessage "&aYou have applied the kit &f${kit.name}"
+        player sendMessage "&aYou have applied the kit &f${kit.name.capitalize()}&a."
 
         if (kit.cooldown != "") {
             playerProfile.kitCooldowns[kit.name] = System.currentTimeMillis()
@@ -82,7 +80,7 @@ object KitsCommand {
     fun kitsAdmin(player: Player, @Param("kit") kitName: String) {
         kitName.lowercase()
         if (KitsService.kits.containsKey(kitName)) {
-            player sendMessage "&cKit already exists"
+            player sendMessage "&cThe kit $kitName already exists."
             return
         }
 
@@ -94,7 +92,13 @@ object KitsCommand {
             }
         }
 
-        player sendMessage "&aKit created"
+        player.inventory.armorContents.forEach { item ->
+            if (item != null){
+                items.add(ItemStackSerializer.itemTo64(item)!!)
+            }
+        }
+
+        player sendMessage "&aThat kit has been created."
 
         val kit = Kit(kitName, items = items)
 
@@ -107,14 +111,14 @@ object KitsCommand {
     fun kitsAdminDelete(player: Player, @Param("kit") kitName: String) {
         kitName.lowercase()
         if (!KitsService.kits.containsKey(kitName)) {
-            player sendMessage "&cKit not found"
+            player sendMessage "&cNo kit with the name ${kitName.uppercase()} found."
             return
         }
 
         KitsService.kits.remove(kitName)
         KitsService.handler.deleteAsync(kitName)
 
-        player sendMessage "&aKit deleted"
+        player sendMessage "&cThat kit has been deleted."
     }
 
     @Command(["kit admin set", "kits admin set"], permission = "kitpvp.admin.set")
@@ -122,7 +126,7 @@ object KitsCommand {
     fun kitsAdminSet(player: Player, @Param("kit") kitName: String) {
         kitName.lowercase()
         if (!KitsService.kits.containsKey(kitName)) {
-            player sendMessage "&cKit not found"
+            player sendMessage "&cNo kit with the name ${kitName.uppercase()} found."
             return
         }
 
@@ -142,14 +146,15 @@ object KitsCommand {
         KitsService.kits[kitName] = kit
         KitsService.handler.storeAsync(kitName, kit)
 
-        player.sendMessage("&aKit updated")
+        player sendMessage "&aThe kit's contents have been updated."
     }
 
     @Command(["kit admin cooldown", "kits admin cooldown"], permission = "kitpvp.admin.cooldown")
     @JvmStatic
     fun kitsAdminCooldown(player: Player, @Param("kit") kitName: String, @Param("cooldown") cooldown: String) {
+        kitName.lowercase()
         if (!KitsService.kits.containsKey(kitName)) {
-            player sendMessage "&cKit not found"
+            player sendMessage "&cNo kit with the name ${kitName.capitalize()} found."
             return
         }
 
@@ -160,6 +165,6 @@ object KitsCommand {
         KitsService.kits[kitName] = kit
         KitsService.handler.storeAsync(kitName, kit)
 
-        player sendMessage "&aUpdated kit cooldown"
+        player sendMessage "&aThe kit cooldown has been updated to &l${TimeUtil.formatIntoDetailedString(TimeUtil.parseTime(cooldown))}&a."
     }
 }

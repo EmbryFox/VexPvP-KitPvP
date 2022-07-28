@@ -9,8 +9,10 @@ import net.evilblock.cubed.util.time.TimeUtil
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.hyrical.kitpvp.KitPvP
+import org.hyrical.kitpvp.combat.CombatTagHandler
 import org.hyrical.kitpvp.combat.getCombatTagFormatted
 import org.hyrical.kitpvp.combat.isCombatTagged
+import org.hyrical.kitpvp.koth.storage.KothHandler
 import org.hyrical.kitpvp.profiles.getProfile
 import org.hyrical.kitpvp.scoreboard.animation.type.LinkAnimation
 import org.hyrical.kitpvp.scoreboard.animation.type.TitleAnimation
@@ -74,12 +76,17 @@ object ScoreboardProvider {
             scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fDeaths: &d${profile.deaths}"))
             scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fBalance: &d${profile.balance}"))
             scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fKillstreak: &d${profile.killstreak}"))
-            if (player.isCombatTagged()) {
-                scores.add(translate( " &7" + Constants.DOT_SYMBOL + " &fCombat Tag: &d${player.getCombatTagFormatted()}"))
+            if (KothHandler.activeKoth != null){
+                scores.add(translate("&d&l${KothHandler.activeKoth.name}&f: ${TimeUtil.formatIntoMMSS(KothHandler.activeKoth.duration)}"))
             }
-            scores.add(translate("&e"))
-            scores.add(translate("&5&lSERVER"))
-            scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fPlayers: &d${Bukkit.getOnlinePlayers().filter { !AquaCoreAPI.INSTANCE.getPlayerData(it.uniqueId).isVanished }.size}"))
+
+            if (player.isCombatTagged()){
+                scores.add(translate("&d"))
+                scores.add(translate("&5&lCOOLDOWNS"))
+                if (player.isCombatTagged()){
+                    scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fCombat: &d${player.getCombatTagFormatted()}s"))
+                }
+            }
             scores.add(translate("&c"))
 
             renderHeaderFooter(scores)
@@ -89,10 +96,6 @@ object ScoreboardProvider {
         }
 
         private fun renderHeaderFooter(scores: MutableList<String>) {
-            for ((index, line) in ScoreboardConfig.header.withIndex()) {
-                scores.add(index, processPlaceholders(line))
-            }
-
             for (line in ScoreboardConfig.footer) {
                 scores.add(processPlaceholders(line))
             }

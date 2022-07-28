@@ -61,6 +61,10 @@ scoreboard:
     typer-interval: 100
     typer-pause: 2000
 
+
+bounty-min: 50
+
+
 announcer-delay: 60 // Delay between announcements in seconds
 announcer-prefix: "  &5&lVex&d&lMC &r&7➥ "
 announcements:
