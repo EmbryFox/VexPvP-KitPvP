@@ -13,6 +13,7 @@ import org.hyrical.kitpvp.combat.CombatTagHandler
 import org.hyrical.kitpvp.combat.getCombatTagFormatted
 import org.hyrical.kitpvp.combat.isCombatTagged
 import org.hyrical.kitpvp.koth.storage.KothHandler
+import org.hyrical.kitpvp.listeners.GodAppleListener
 import org.hyrical.kitpvp.profiles.getProfile
 import org.hyrical.kitpvp.scoreboard.animation.type.LinkAnimation
 import org.hyrical.kitpvp.scoreboard.animation.type.TitleAnimation
@@ -77,14 +78,19 @@ object ScoreboardProvider {
             scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fBalance: &d${profile.balance}"))
             scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fKillstreak: &d${profile.killstreak}"))
             if (KothHandler.activeKoth != null){
-                scores.add(translate("&d&l${KothHandler.activeKoth.name}&f: ${TimeUtil.formatIntoMMSS(KothHandler.activeKoth.duration)}"))
+                scores.add(translate("&7&b"))
+
+                scores.add(translate("&d&l${KothHandler.activeKoth!!.name}&f: ${TimeUtil.formatIntoMMSS(KothHandler.activeKoth!!.duration)}"))
             }
 
-            if (player.isCombatTagged()){
+            if (player.isCombatTagged() || GodAppleListener.isOnCooldown(player)){
                 scores.add(translate("&d"))
                 scores.add(translate("&5&lCOOLDOWNS"))
                 if (player.isCombatTagged()){
                     scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fCombat: &d${player.getCombatTagFormatted()}s"))
+                }
+                if (GodAppleListener.isOnCooldown(player)){
+                    scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fGod Apple: &d${TimeUtil.formatIntoMMSS(GodAppleListener.getCooldown(player))}"))
                 }
             }
             scores.add(translate("&c"))

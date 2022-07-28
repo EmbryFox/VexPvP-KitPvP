@@ -19,9 +19,7 @@ import org.hyrical.kitpvp.koth.commands.KothCommands
 import org.hyrical.kitpvp.koth.koth.Koth
 import org.hyrical.kitpvp.koth.storage.KothHandler
 import org.hyrical.kitpvp.leaderboard.KillLeaderboard
-import org.hyrical.kitpvp.listeners.DeathMessageListener
-import org.hyrical.kitpvp.listeners.JoinQuitListeners
-import org.hyrical.kitpvp.listeners.KillstreakListener
+import org.hyrical.kitpvp.listeners.*
 import org.hyrical.kitpvp.mongo.MongoURIConnection
 import org.hyrical.kitpvp.profiles.ProfileService
 import org.hyrical.kitpvp.profiles.listener.ProfileListener
@@ -84,6 +82,8 @@ class KitPvP : JavaPlugin() {
         server.pluginManager.registerEvents(JoinQuitListeners(), this)
         server.pluginManager.registerEvents(KillstreakListener(), this)
         server.pluginManager.registerEvents(CombatTagHandler, this)
+        server.pluginManager.registerEvents(GodAppleListener, this)
+        server.pluginManager.registerEvents(BountyListener(), this)
 
         Announcer.load(config)
 

@@ -1,13 +1,13 @@
 package org.hyrical.kitpvp.koth.koth
 
-import org.bukkit.Bukkit
-import org.bukkit.ChatColor
-import org.bukkit.GameMode
-import org.bukkit.Location
+import com.lunarclient.bukkitapi.LunarClientAPI
+import com.lunarclient.bukkitapi.`object`.LCWaypoint
+import org.bukkit.*
 import org.bukkit.entity.Player
 import org.hyrical.kitpvp.koth.Event
 import org.hyrical.kitpvp.koth.koth.serializer.LocationSerializer
 import org.hyrical.kitpvp.koth.storage.KothHandler
+import org.hyrical.kitpvp.sendMessage
 import java.util.*
 import kotlin.math.abs
 
@@ -22,10 +22,19 @@ class Koth(
     var currentCapper: UUID? = null
 
     var duration: Int = 60 * 3
+    var remainingTime: Int = duration
 
     override fun activate() {
-        this.duration = 60 * 3
         this.currentCapper = null
+
+        KothHandler.activeKoth = this
+
+        for (player in Bukkit.getOnlinePlayers()){
+            LunarClientAPI.getInstance().sendWaypoint(player, LCWaypoint(name, LocationSerializer.itemFrom64(location), Color.PURPLE.asRGB(), true))
+
+            player.sendTitle("&5&lKOTH", "$name &fhas been started!")
+            player.playSound(player.location, Sound.ENDERDRAGON_HIT, 2.0f, 2.0f)
+        }
     }
 
     override fun tick() {
@@ -37,13 +46,13 @@ class Koth(
             ) {
                 resetCapTime()
             } else {
-                if (duration % 10 == 0 && duration > 1) {
-                    capper.sendMessage(ChatColor.GOLD.toString() + "[KingOfTheHill]" + ChatColor.YELLOW + " Attempting to control " + ChatColor.BLUE + name + ChatColor.YELLOW + ".")
+                if (remainingTime % 10 == 0 && remainingTime > 1) {
+                    capper sendMessage "&7[&5&lKOTH&7] &fYou are attempting to control &d${name}&f."
                 }
-                if (duration <= 0) {
-                    finishCapping()
+                if (remainingTime <= 0) {
+                    finishCapping(capper)
                 }
-                this.duration--
+                this.remainingTime--
             }
         } else {
             val onCap: MutableList<Player?> = ArrayList()
@@ -55,6 +64,7 @@ class Koth(
                     onCap.add(player)
                 }
             }
+
             onCap.shuffle()
             if (onCap.size != 0) {
                 startCapping(onCap[0]!!)
@@ -63,9 +73,9 @@ class Koth(
     }
 
     override fun deactivate() {
-        if (!active) return
-
-
+        this.remainingTime = 0
+        this.currentCapper = null
+        KothHandler.activeKoth = null
     }
 
     fun save() {
@@ -75,8 +85,6 @@ class Koth(
 
 
     fun onCap(location: Location): Boolean {
-        if (!location.world.name.equals(location.world)) return false
-
         val loc = LocationSerializer.itemFrom64(this.location)!!
 
         val xDistance: Int = abs(location.blockX - loc.blockX)
@@ -87,10 +95,19 @@ class Koth(
 
     private fun resetCapTime() {
         currentCapper = null
-        this.duration = 60 * 3
+        this.remainingTime = duration
     }
 
-    private fun finishCapping() {
+    private fun finishCapping(capper: Player) {
+
+        Bukkit.getOnlinePlayers().forEach {
+            it sendMessage "&7&m----------------------------------"
+            it sendMessage "&5${capper.name} &fhas captured the &d${name} &fKOTH!"
+            it sendMessage "&7&m----------------------------------"
+
+            it.playSound(it.location, Sound.WITHER_SPAWN, 1.5f, 1.5f)
+        }
+
         deactivate()
     }
 
@@ -100,7 +117,7 @@ class Koth(
         }
 
         currentCapper = player.uniqueId
-        this.duration = 60 * 3
+        this.remainingTime = duration
     }
 
 }

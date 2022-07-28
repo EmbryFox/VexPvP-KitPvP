@@ -10,7 +10,7 @@ object KothHandler {
     val handler = KitPvP.instance.dataHandler.createStoreType<String, Koth>(DataStoreType.FLATFILE)
     val koths = hashMapOf<String, Koth>()
 
-    val activeKoth: Koth? = null
+    var activeKoth: Koth? = null
 
     fun load() {
         koths.clear()

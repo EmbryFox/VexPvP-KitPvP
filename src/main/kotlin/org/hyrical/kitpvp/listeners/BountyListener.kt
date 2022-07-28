@@ -15,7 +15,14 @@ class BountyListener : Listener {
         val attackerProfile = attacker.getProfile()
         val victimProfile = victim.getProfile()
 
+        if (victimProfile.bounty != 0.0){
+            attackerProfile.balance += victimProfile.bounty
+            victimProfile.bounty = 0.0
 
+            attackerProfile.save()
+            victimProfile.save()
+
+        }
     }
 
 }
