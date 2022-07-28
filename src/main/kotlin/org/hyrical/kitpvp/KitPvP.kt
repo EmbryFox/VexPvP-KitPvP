@@ -75,7 +75,6 @@ class KitPvP : JavaPlugin() {
         server.pluginManager.registerEvents(KillstreakListener(), this)
 
         Announcer.load(config)
-        Announcer.runTaskTimer(this, 20L, config.getInt("announcer-delay").toLong())
     }
 
 

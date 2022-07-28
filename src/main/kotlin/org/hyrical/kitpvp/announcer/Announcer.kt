@@ -3,11 +3,12 @@ package org.hyrical.kitpvp.announcer
 import org.bukkit.Bukkit
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.scheduler.BukkitRunnable
+import org.hyrical.kitpvp.KitPvP
 import org.hyrical.kitpvp.translate
 
 object Announcer : BukkitRunnable() {
 
-    private const val i = 0
+    private var i = 0
 
     private val announcements: MutableList<String> = mutableListOf()
 
@@ -17,6 +18,8 @@ object Announcer : BukkitRunnable() {
         for (i in 0 until config.getStringList("announcements").size) {
             announcements.add(config.getStringList("announcements")[i].replace("%nl%", "\n"))
         }
+
+        Announcer.runTaskTimer(KitPvP.instance, 20L, config.getInt("announcer-delay").toLong())
     }
 
     /**
@@ -35,5 +38,11 @@ object Announcer : BukkitRunnable() {
         val message = announcements[i]
 
         Bukkit.broadcastMessage(translate(message))
+
+        if (i == announcements.size - 1) {
+            i = 0
+        } else {
+            i++
+        }
     }
 }
