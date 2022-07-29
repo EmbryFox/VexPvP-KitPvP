@@ -53,6 +53,6 @@ object SpawnCommand {
 
                 i--
             }
-        }.runTaskTimer(KitPvP.instance, 20L, 20L)
+        }.runTaskTimer(KitPvP.instance, 0L, 20L)
     }
 }

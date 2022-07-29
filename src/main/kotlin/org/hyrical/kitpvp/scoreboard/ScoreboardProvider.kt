@@ -80,7 +80,7 @@ object ScoreboardProvider {
             if (KothHandler.activeKoth != null){
                 scores.add(translate("&7&b"))
 
-                scores.add(translate("&d&l${KothHandler.activeKoth!!.name}&f: ${TimeUtil.formatIntoMMSS(KothHandler.activeKoth!!.duration)}"))
+                scores.add(translate("&d&l${KothHandler.activeKoth!!.name}&f: ${TimeUtil.formatIntoMMSS(KothHandler.activeKoth!!.remainingTime)}"))
             }
 
             if (player.isCombatTagged() || GodAppleListener.isOnCooldown(player)){
@@ -90,7 +90,7 @@ object ScoreboardProvider {
                     scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fCombat: &d${player.getCombatTagFormatted()}s"))
                 }
                 if (GodAppleListener.isOnCooldown(player)){
-                    scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fGod Apple: &d${TimeUtil.formatIntoMMSS(GodAppleListener.getCooldown(player))}"))
+                    scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fGod Apple: &d${TimeUtil.formatIntoMMSS(GodAppleListener.getCooldown(player)!!)}"))
                 }
             }
             scores.add(translate("&c"))

@@ -30,18 +30,19 @@ object KothCommands {
     @Command(["koth delete"], permission = "kitpvp.koth.delete")
     @JvmStatic
     fun delete(player: Player, @Param("name") name: String) {
-        if (KothHandler.koths.containsKey(name)) {
-            player sendMessage "&cThat KoTH already exists."
+        name.lowercase()
+        if (!KothHandler.koths.containsKey(name)) {
+            player sendMessage "&cThat KoTH doesn't exist."
             return
         }
 
-        KothHandler.handler.deleteAsync(
+        KothHandler.handler.delete(
             name
         )
 
         KothHandler.koths.remove(name)
 
-        player sendMessage "&aYou have deleted the KoTH $name."
+        player sendMessage "&aYou have deleted the KoTH ${name.capitalize()}."
     }
 
     @Command(["koth activate"], permission = "kitpvp.koth.activate")
@@ -58,6 +59,7 @@ object KothCommands {
         }
 
         koth.activate()
+
         player sendMessage "&aYou have activated the ${koth.name}&a."
     }
 
