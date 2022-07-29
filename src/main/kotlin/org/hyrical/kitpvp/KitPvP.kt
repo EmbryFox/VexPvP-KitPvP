@@ -29,13 +29,13 @@ import org.hyrical.kitpvp.scoreboard.ScoreboardProvider
 import org.hyrical.kitpvp.scoreboard.animation.type.LinkAnimation
 import org.hyrical.kitpvp.scoreboard.animation.type.TitleAnimation
 import org.hyrical.kitpvp.spigot.BowBoostListener
-import java.util.*
+import kotlin.random.Random
 
 class KitPvP : JavaPlugin() {
 
     companion object {
         lateinit var instance: KitPvP
-        var random: Random = Random()
+        val random: Random = Random
     }
 
     lateinit var mongoConnectionPool: MongoConnectionPool

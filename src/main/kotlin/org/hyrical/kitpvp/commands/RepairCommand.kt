@@ -27,7 +27,7 @@ object RepairCommand {
 
         profile.balance -= 250
         profile.save()
-        player sendMessage "&aYou have repaired your item for &6\$250&a."
+        player sendMessage "&aYou have repaired your item for &6$250&a."
 
         item.durability = 0
 

@@ -10,19 +10,34 @@ import org.hyrical.kitpvp.kits.KitsService
 import org.hyrical.kitpvp.kits.serializer.ItemStackSerializer
 import org.hyrical.kitpvp.profiles.getProfile
 import org.hyrical.kitpvp.sendMessage
+import org.hyrical.kitpvp.translate
 import java.util.*
+import kotlin.time.Duration
+import kotlin.time.ExperimentalTime
 
 object KitsCommand {
 
+    @OptIn(ExperimentalTime::class)
     @Command(["kits"], description = "View all available kits")
     @JvmStatic
     fun kits(player: Player) {
-        player.sendMessage("§aAvailable kits:")
-        player.sendMessage("§a- §fKit 1")
-        player.sendMessage("§a- §fKit 2")
-        player.sendMessage("§a- §fKit 3")
+        val profile = player.getProfile()
+
+        player sendMessage("&7&m---------------------------------")
+        player sendMessage(translate("&5Available Kits&f:"))
+        player sendMessage("&7&m---------------------------------")
+
+        for (kit in KitsService.kits) {
+            if (player.hasPermission(kit.value.permission)) {
+                player sendMessage "&d${kit.value.name.capitalize()} &7- " +
+                        if (isOnCooldown(player, kit.value)) "&fCooldown: &d${
+                            TimeUtil.formatIntoMMSS(((profile.kitCooldowns[kit.value.name]!! - System.currentTimeMillis()) / 1000).toInt())}" else "&fNot on cooldown"
+            }
+        }
+        player sendMessage("&7&m---------------------------------")
     }
 
+    @OptIn(ExperimentalTime::class)
     @Command(["kit"], description = "Apply a kit")
     @JvmStatic
     fun kit(player: Player, @Param("kit", "xzadsafaefreasrfaedfaerdfaedaedsadasdassdasdasd") kitName: String) {
@@ -47,10 +62,8 @@ object KitsCommand {
 
         if (kit.cooldown != "") {
             if (playerProfile.kitCooldowns[kit.name] != null) {
-                if ((playerProfile.kitCooldowns[kit.name.lowercase()]!! + (TimeUtil.parseTime(kit.cooldown) * 1000)) > System.currentTimeMillis()) {
-                    val seconds = TimeUtil.parseTime(kit.cooldown)
-
-                    player sendMessage "&cYou are on cooldown for this kit for another &l${TimeUtil.formatIntoDetailedString(seconds)}&c."
+                if (isOnCooldown(player, kit)) {
+                    player sendMessage "&cYou are on cooldown for this kit for another &l${TimeUtil.formatIntoDetailedString((((player.getProfile().kitCooldowns[kit.name]!! - System.currentTimeMillis()) / 1000).toInt()))}&c."
                     return
                 } else {
                     playerProfile.kitCooldowns.remove(kit.name.lowercase())
@@ -70,7 +83,7 @@ object KitsCommand {
         player sendMessage "&aYou have applied the kit &f${kit.name.capitalize()}&a."
 
         if (kit.cooldown != "") {
-            playerProfile.kitCooldowns[kit.name] = System.currentTimeMillis()
+            playerProfile.kitCooldowns[kit.name] = System.currentTimeMillis() + TimeUtil.parseTime(kit.cooldown) * 1000
             playerProfile.save()
         }
     }
@@ -189,5 +202,13 @@ object KitsCommand {
         KitsService.handler.storeAsync(kitName, kit)
 
         player sendMessage "&aThe kit cooldown has been reset."
+    }
+
+    fun isOnCooldown(player: Player, kit: Kit): Boolean {
+        val playerProfile = player.getProfile()
+
+        if (playerProfile.kitCooldowns[kit.name.lowercase()] == null) return false
+
+        return (playerProfile.kitCooldowns[kit.name.lowercase()]!! > System.currentTimeMillis())
     }
 }

@@ -23,12 +23,12 @@ class KillstreakListener : Listener {
         val profile = event.entity.killer.getProfile()
 
         val newBal = KitPvP.random.nextInt(5, 10)
+        val level = profile.getLevel()
 
-        event.entity.killer sendMessage "You received $$newBal for killing ${event.entity.name}"
+        event.entity.killer sendMessage "You received &d$$newBal &ffor killing &5${event.entity.name}&f."
 
         profile.kills++
         profile.killstreak++
-        val level = profile.getLevel()
         profile.experience += KitPvP.random.nextInt(5, 10)
         profile.balance += newBal
         profile.save()
@@ -51,28 +51,28 @@ class KillstreakListener : Listener {
                 generateMessage(player, 10)
             }
             15 -> {
-                generateMessage(player, 20)
+                generateMessage(player, 15)
             }
             20 -> {
                 generateMessage(player, 20)
             }
             25 -> {
-                generateMessage(player, 20)
+                generateMessage(player, 25)
             }
             30 -> {
-                generateMessage(player, 20)
+                generateMessage(player, 30)
             }
             35 -> {
-                generateMessage(player, 20)
+                generateMessage(player, 35)
             }
             40 -> {
-                generateMessage(player, 20)
+                generateMessage(player, 40)
             }
             45 -> {
-                generateMessage(player, 20)
+                generateMessage(player, 45)
             }
             50 -> {
-                generateMessage(player, 20)
+                generateMessage(player, 50)
             }
         }
     }

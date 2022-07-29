@@ -12,6 +12,8 @@ class BountyListener : Listener {
         val attacker = event.entity.killer
         val victim = event.entity
 
+        if (attacker == null || victim == null) return
+
         val attackerProfile = attacker.getProfile()
         val victimProfile = victim.getProfile()
 
