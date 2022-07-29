@@ -10,6 +10,7 @@ import org.hyrical.kitpvp.kits.KitsService
 import org.hyrical.kitpvp.kits.serializer.ItemStackSerializer
 import org.hyrical.kitpvp.profiles.getProfile
 import org.hyrical.kitpvp.sendMessage
+import java.util.*
 
 object KitsCommand {
 
@@ -166,5 +167,28 @@ object KitsCommand {
         KitsService.handler.storeAsync(kitName, kit)
 
         player sendMessage "&aThe kit cooldown has been updated to &l${TimeUtil.formatIntoDetailedString(TimeUtil.parseTime(cooldown))}&a."
+    }
+
+    @Command(["kit admin cooldown reset", "kits admin cooldown reset"], permission = "kitpvp.admin.cooldown.reset")
+    @JvmStatic
+    fun kitsAdminCooldownReset(player: Player, @Param("kit") kitName: String) {
+        kitName.lowercase()
+        if (!KitsService.kits.containsKey(kitName)) {
+            player sendMessage "&cNo kit with the name ${kitName.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(
+                    Locale.getDefault()
+                ) else it.toString()
+            }} found."
+            return
+        }
+
+        val kit = KitsService.kits[kitName]!!
+
+        kit.cooldown = ""
+
+        KitsService.kits[kitName] = kit
+        KitsService.handler.storeAsync(kitName, kit)
+
+        player sendMessage "&aThe kit cooldown has been reset."
     }
 }
