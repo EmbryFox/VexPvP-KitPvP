@@ -17,7 +17,7 @@ class ChatListener : Listener {
 
         val profile = player.getProfile()
 
-        event.format = translate("")
+        event.format = translate("&7[&5${profile.getLevel()}&7] ")
     }
 
 }
