@@ -17,14 +17,33 @@ import kotlin.time.ExperimentalTime
 
 object KitsCommand {
 
-    @OptIn(ExperimentalTime::class)
     @Command(["kits"], description = "View all available kits")
     @JvmStatic
-    fun kits(player: Player) {
+    fun kits(player: Player, @Param("kit", "fid2ieu923t0wi0adjifwjnbdjivfedjnerwjwje") kitName: String) {
+        if (kitName != "fid2ieu923t0wi0adjifwjnbdjivfedjnerwjwje"){
+            val kit = KitsService.kits[kitName]
+
+            if (kit == null){
+                player sendMessage "&cThat kit doesn't exist."
+                return
+            }
+
+            kitCommand(player, kitName)
+
+            return
+        }
+
         val profile = player.getProfile()
+        var i = 0
+
+        for (kit in KitsService.kits){
+            if (player.hasPermission(kit.value.permission)){
+                i++
+            }
+        }
 
         player sendMessage("&7&m---------------------------------")
-        player sendMessage(translate("&5Available Kits&f:"))
+        player sendMessage(translate("&5Available Kits " + "&7(${i})" + "&f:"))
         player sendMessage("&7&m---------------------------------")
 
         for (kit in KitsService.kits) {
@@ -40,9 +59,9 @@ object KitsCommand {
     @OptIn(ExperimentalTime::class)
     @Command(["kit"], description = "Apply a kit")
     @JvmStatic
-    fun kit(player: Player, @Param("kit", "xzadsafaefreasrfaedfaerdfaedaedsadasdassdasdasd") kitName: String) {
+    fun kitCommand(player: Player, @Param("kit", "xzadsafaefreasrfaedfaerdfaedaedsadasdassdasdasd") kitName: String) {
         if (kitName == "xzadsafaefreasrfaedfaerdfaedaedsadasdassdasdasd") {
-            kits(player)
+            kits(player, "fid2ieu923t0wi0adjifwjnbdjivfedjnerwjwje")
             return
         }
 
