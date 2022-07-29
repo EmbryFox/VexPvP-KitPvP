@@ -64,6 +64,12 @@ scoreboard:
 
 bounty-min: 50
 
+rules:
+  - "&e&lRules"
+  - "&8&m----------------"
+  - "&e&l1. &7No griefing."
+  - "&e&l2. &7No spamming."
+  - "&8&m----------------"
 
 announcer-delay: 60 // Delay between announcements in seconds
 announcer-prefix: "  &5&lVex&d&lMC &r&7➥ "

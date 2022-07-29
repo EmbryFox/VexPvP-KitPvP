@@ -7,10 +7,12 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.PlayerDeathEvent
+import org.hyrical.kitpvp.KitPvP
 import org.hyrical.kitpvp.profiles.Profile
 import org.hyrical.kitpvp.profiles.getProfile
 import org.hyrical.kitpvp.sendMessage
 import org.hyrical.kitpvp.translate
+import java.util.Random
 
 class KillstreakListener : Listener {
 
@@ -20,10 +22,15 @@ class KillstreakListener : Listener {
 
         val profile = event.entity.killer.getProfile()
 
+        val newBal = KitPvP.random.nextInt(5, 10)
+
+        event.entity.killer sendMessage "You received $$newBal for killing ${event.entity.name}"
+
         profile.kills++
         profile.killstreak++
         val level = profile.getLevel()
-        profile.experience += 30
+        profile.experience += KitPvP.random.nextInt(5, 10)
+        profile.balance += newBal
         profile.save()
 
         if (level != profile.getLevel()) {

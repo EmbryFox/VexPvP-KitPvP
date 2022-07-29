@@ -28,6 +28,7 @@ import org.hyrical.kitpvp.scoreboard.ScoreboardConfig
 import org.hyrical.kitpvp.scoreboard.ScoreboardProvider
 import org.hyrical.kitpvp.scoreboard.animation.type.LinkAnimation
 import org.hyrical.kitpvp.scoreboard.animation.type.TitleAnimation
+import org.hyrical.kitpvp.spigot.BowBoostListener
 import java.util.*
 
 class KitPvP : JavaPlugin() {
@@ -76,6 +77,9 @@ class KitPvP : JavaPlugin() {
         CommandHandler.registerClass(BountyCommand.javaClass)
         CommandHandler.registerClass(SpawnCommand.javaClass)
         CommandHandler.registerClass(LeaderboardCommand.javaClass)
+        CommandHandler.registerClass(RepairCommand.javaClass)
+        CommandHandler.registerClass(RulesCommand.javaClass)
+        CommandHandler.registerClass(AdCommand.javaClass)
 
         CommandHandler.registerClass(KothCommands.javaClass)
 
@@ -88,6 +92,7 @@ class KitPvP : JavaPlugin() {
         server.pluginManager.registerEvents(CombatTagHandler, this)
         server.pluginManager.registerEvents(GodAppleListener, this)
         server.pluginManager.registerEvents(BountyListener(), this)
+        server.pluginManager.registerEvents(BowBoostListener(), this)
 
         Announcer.load(config)
 

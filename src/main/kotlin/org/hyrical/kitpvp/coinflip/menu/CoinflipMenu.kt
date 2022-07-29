@@ -14,6 +14,8 @@ class CoinflipMenu : PaginatedMenu() {
         for (coinflip in CoinflipService.coinflips.values) {
             buttons[buttons.size] = CoinflipButton(coinflip)
         }
+
+        return buttons
     }
 
     override fun getPrePaginatedTitle(player: Player): String {

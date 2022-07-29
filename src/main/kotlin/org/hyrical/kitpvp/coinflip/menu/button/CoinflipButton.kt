@@ -11,7 +11,7 @@ import org.hyrical.kitpvp.coinflip.CoinflipService
 class CoinflipButton(val coinflip: CoinflipService.Coinflip) : TexturedHeadButton() {
 
     override fun getButtonItem(player: Player): ItemStack {
-        return ItemBuilder.of(Material.SKULL_ITEM)
+        return ItemBuilder.of(Material.SKULL_ITEM).build()
     }
 
 }

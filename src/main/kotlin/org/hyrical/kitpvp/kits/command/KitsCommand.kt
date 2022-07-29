@@ -26,13 +26,12 @@ object KitsCommand {
     @Command(["kit"], description = "Apply a kit")
     @JvmStatic
     fun kit(player: Player, @Param("kit", "xzadsafaefreasrfaedfaerdfaedaedsadasdassdasdasd") kitName: String) {
-        kitName.lowercase()
         if (kitName == "xzadsafaefreasrfaedfaerdfaedaedsadasdassdasdasd") {
             kits(player)
             return
         }
 
-        val kit = KitsService.kits[kitName.lowercase()]
+        val kit = KitsService.kits[kitName]
 
         if (kit == null) {
             player sendMessage "&cNo kit with the name ${kitName.capitalize()} found."

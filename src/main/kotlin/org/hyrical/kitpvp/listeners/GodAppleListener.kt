@@ -22,7 +22,7 @@ object GodAppleListener : Listener {
         if (event.item.durability != 1.toShort()) return
 
         if (cooldowns.containsKey(event.player.uniqueId)) {
-            if ((cooldowns[event.player.uniqueId]?.plus((1000 * 60)))!! > System.currentTimeMillis()) {
+            if ((cooldowns[event.player.uniqueId]?.plus((1000 * 90)))!! > System.currentTimeMillis()) {
                 event.player sendMessage "&cYou cannot do that for another &l${TimeUtil.formatIntoDetailedString(
                     getCooldown(event.player)!!)}&c."
                 event.isCancelled = true

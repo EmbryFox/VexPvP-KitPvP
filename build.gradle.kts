@@ -25,6 +25,10 @@ dependencies {
     implementation("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
     implementation("com.github.patrickzondervan:honey:9e2876f3ab")
 
+    implementation("net.kyori:adventure-api:4.11.0")
+    implementation("net.kyori:adventure-platform-bukkit:4.1.1")
+    implementation("net.kyori:adventure-text-minimessage:4.11.0")
+
     implementation(fileTree("lib") { include("*.jar") })
 
 }
