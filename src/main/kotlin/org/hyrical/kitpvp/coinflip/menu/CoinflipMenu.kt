@@ -4,6 +4,7 @@ import net.evilblock.cubed.menu.Button
 import net.evilblock.cubed.menu.pagination.PaginatedMenu
 import org.bukkit.entity.Player
 import org.hyrical.kitpvp.coinflip.CoinflipService
+import org.hyrical.kitpvp.coinflip.menu.button.CoinflipButton
 import org.hyrical.kitpvp.translate
 
 class CoinflipMenu : PaginatedMenu() {
