@@ -1,5 +1,6 @@
 package org.hyrical.kitpvp.listeners
 
+import net.evilblock.cubed.util.time.TimeUtil
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -14,30 +15,35 @@ object GodAppleListener : Listener {
 
     @EventHandler
     fun onConsume(event: PlayerItemConsumeEvent) {
+        println(event.item.durability.toString())
+
         if (event.item.type != Material.GOLDEN_APPLE) return
 
         if (event.item.durability != 1.toShort()) return
 
-        if (!cooldowns.containsKey(event.player.uniqueId)) return
-
-        if ((cooldowns[event.player.uniqueId]?.plus((1000 * 60)))!! > System.currentTimeMillis()) {
-            event.player sendMessage "&cYou cannot do that for another &e${(cooldowns[event.player.uniqueId]?.plus((1000 * 60))?.minus(System.currentTimeMillis()))?.div(1000)?.toInt()}&c seconds."
-            event.isCancelled = true
-            return
+        if (cooldowns.containsKey(event.player.uniqueId)) {
+            if ((cooldowns[event.player.uniqueId]?.plus((1000 * 60)))!! > System.currentTimeMillis()) {
+                event.player sendMessage "&cYou cannot do that for another &l${TimeUtil.formatIntoDetailedString(
+                    getCooldown(event.player)!!)}&c."
+                event.isCancelled = true
+                return
+            }
         }
 
         cooldowns[event.player.uniqueId] = System.currentTimeMillis()
-        event.player sendMessage "&eYou have consumed a enchanted golden apple and are now on cooldown for 1 minute."
+        event.player sendMessage "&fYou are now on &dGod Apple &fcooldown for &51:00&f."
     }
 
     fun isOnCooldown(player: Player): Boolean {
+        if (!cooldowns.containsKey(player.uniqueId)) return false
+
         if ((cooldowns[player.uniqueId]?.plus((1000 * 60)))!! > System.currentTimeMillis()) {
             return true
         }
         return false
     }
 
-    fun getCooldown(player: Player): Int {
-        return cooldowns[player.uniqueId]?.toInt()?.div(1000) ?: return 0
+    fun getCooldown(player: Player): Int? {
+        return (cooldowns[player.uniqueId]?.plus((1000 * 60))?.minus(System.currentTimeMillis()))?.div(1000)?.toInt()
     }
 }

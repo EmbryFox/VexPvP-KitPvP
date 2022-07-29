@@ -8,6 +8,7 @@ import org.hyrical.kitpvp.koth.Event
 import org.hyrical.kitpvp.koth.koth.serializer.LocationSerializer
 import org.hyrical.kitpvp.koth.storage.KothHandler
 import org.hyrical.kitpvp.sendMessage
+import org.hyrical.kitpvp.translate
 import java.util.*
 import kotlin.math.abs
 
@@ -28,11 +29,12 @@ class Koth(
         this.currentCapper = null
 
         KothHandler.activeKoth = this
+        this.remainingTime = duration
 
         for (player in Bukkit.getOnlinePlayers()){
-            LunarClientAPI.getInstance().sendWaypoint(player, LCWaypoint(name, LocationSerializer.itemFrom64(location), Color.PURPLE.asRGB(), true))
+            LunarClientAPI.getInstance().sendWaypoint(player, LCWaypoint("$name KoTH", LocationSerializer.itemFrom64(location), Color.PURPLE.asRGB(), true))
 
-            player.sendTitle("&5&lKOTH", "$name &fhas been started!")
+            player.sendTitle(translate("&5&lKOTH"), translate("$name &fhas been started!"))
             player.playSound(player.location, Sound.ENDERDRAGON_HIT, 2.0f, 2.0f)
         }
     }
@@ -76,6 +78,10 @@ class Koth(
         this.remainingTime = 0
         this.currentCapper = null
         KothHandler.activeKoth = null
+
+        for (player in Bukkit.getOnlinePlayers()){
+            LunarClientAPI.getInstance().removeWaypoint(player, LCWaypoint("$name KoTH", LocationSerializer.itemFrom64(location), Color.PURPLE.asRGB(), true))
+        }
     }
 
     fun save() {
@@ -105,7 +111,7 @@ class Koth(
             it sendMessage "&5${capper.name} &fhas captured the &d${name} &fKOTH!"
             it sendMessage "&7&m----------------------------------"
 
-            it.playSound(it.location, Sound.WITHER_SPAWN, 1.5f, 1.5f)
+            it.playSound(it.location, Sound.WITHER_SPAWN, 1.0f, 1.0f)
         }
 
         deactivate()

@@ -117,7 +117,7 @@ object KitsCommand {
         }
 
         KitsService.kits.remove(kitName)
-        KitsService.handler.deleteAsync(kitName)
+        KitsService.handler.delete(kitName)
 
         player sendMessage "&cThat kit has been deleted."
     }
