@@ -1,9 +1,7 @@
 package org.hyrical.kitpvp.buycraft.menu.confirm
 
-import net.evilblock.cubed.Cubed
 import net.evilblock.cubed.menu.Button
 import net.evilblock.cubed.menu.Menu
-import net.evilblock.cubed.menu.buttons.NumberButton
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.hyrical.kitpvp.KitPvP
@@ -34,7 +32,7 @@ class ConfirmMenu(
         buttons[2] = BooleanButton(this, true, confirm = true)
         buttons[6] = BooleanButton(this, false, confirm = true)
 
-        buttons[4] = object : NumberButton(amount, IntRange(1, 500)) {
+        buttons[4] = object : NumberButton(amount, IntRange(1, 500), pricePerItem) {
             override fun getName(player: Player): String {
                 return translate("&fCurrent amount &7➥ &a$amount")
             }
@@ -74,6 +72,6 @@ class ConfirmMenu(
         }
 
         player.closeInventory()
-        callback.invoke(confirm, amount)
+        callback.invoke(true, amount)
     }
 }

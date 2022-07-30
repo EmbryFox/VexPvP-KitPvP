@@ -18,7 +18,11 @@ class KeyButton(private val name: String, private val description: List<String>,
     }
 
     override fun getDescription(player: Player): List<String> {
-        return description.map { translate(it) }
+        val desc = description.map { translate(it) }.toMutableList()
+        desc.add(translate("&e"))
+        desc.add("&fPrice per item &7➥ &a$amountPer")
+
+        return desc
     }
 
     override fun getMaterial(player: Player): Material {
