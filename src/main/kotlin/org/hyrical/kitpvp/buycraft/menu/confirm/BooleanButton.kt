@@ -53,10 +53,6 @@ class BooleanButton(
     }
 
     override fun clicked(player: Player, i: Int, clickType: ClickType, view: InventoryView) {
-        if (parent.called) {
-            return
-        }
-
         if (value) {
             playSuccess(player)
         } else {

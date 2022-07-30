@@ -5,6 +5,7 @@ import net.evilblock.cubed.menu.Menu
 import net.evilblock.cubed.menu.buttons.BackButton
 import net.evilblock.cubed.menu.buttons.GlassButton
 import net.evilblock.cubed.util.bukkit.ColorUtil
+import net.evilblock.cubed.util.bukkit.Tasks
 import org.bukkit.ChatColor
 import org.bukkit.Material
 import org.bukkit.entity.Player
@@ -54,7 +55,9 @@ abstract class StoreMenu(val title: String) : Menu() {
 
     override fun onClose(player: Player, manualClose: Boolean) {
         if (manualClose) {
-            MainBuycraftMenu().openMenu(player)
+            Tasks.delayed(2L) {
+                MainBuycraftMenu().openMenu(player)
+            }
         }
     }
 }
