@@ -64,6 +64,8 @@ class ConfirmMenu(
     fun invokeCallback(confirm: Boolean) {
         val profile = player.getProfile()
 
+        if (!confirm) return
+
         called = true
 
         if (profile.gems < pricePerItem * amount) {
