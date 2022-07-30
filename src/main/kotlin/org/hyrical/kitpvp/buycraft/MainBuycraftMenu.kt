@@ -12,7 +12,7 @@ import org.bukkit.inventory.InventoryView
 import org.hyrical.kitpvp.buycraft.buttons.InfoButton
 import org.hyrical.kitpvp.buycraft.buttons.SecondaryInfoButton
 import org.hyrical.kitpvp.buycraft.buttons.ThirdendaryInfoButton
-import org.hyrical.kitpvp.buycraft.menu.impl.CrateKeysMenu
+import org.hyrical.kitpvp.buycraft.menu.impl.crates.CrateKeysMenu
 import org.hyrical.kitpvp.translate
 
 class MainBuycraftMenu : Menu("Store ➥ Main") {

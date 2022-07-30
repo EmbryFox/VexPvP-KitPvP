@@ -64,12 +64,14 @@ class ConfirmMenu(
     fun invokeCallback(confirm: Boolean) {
         val profile = player.getProfile()
 
+        called = true
+
         if (profile.gems < pricePerItem * amount) {
             player.sendMessage(translate("&cYou don't have enough gems to buy this!"))
             return
         }
 
-        called = true
+        player.closeInventory()
         callback.invoke(confirm, amount)
     }
 }

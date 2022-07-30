@@ -15,6 +15,7 @@ import java.util.ArrayList
 import org.bukkit.event.inventory.ClickType
 import org.bukkit.inventory.InventoryView
 import org.hyrical.kitpvp.profiles.getProfile
+import org.hyrical.kitpvp.sendMessage
 import org.hyrical.kitpvp.translate
 
 class BooleanButton(
@@ -60,11 +61,13 @@ class BooleanButton(
             playSuccess(player)
         } else {
             playFail(player)
+            parent.called = true
+            player sendMessage "&cYou have cancelled the transaction."
+            player.closeInventory()
+            return
         }
 
-        player.closeInventory()
-
-        parent.invokeCallback(value)
+        parent.invokeCallback(true)
     }
 
 }
