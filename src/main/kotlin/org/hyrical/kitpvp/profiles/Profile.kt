@@ -16,7 +16,7 @@ data class Profile(
     var premiumPass: Boolean = false,
     var kitCooldowns: MutableMap<String, Long> = mutableMapOf(),
     var experience: Long = 0,
-    var gold: Int = 0
+    var gems: Int = 0
 ) {
     val kdrFormat = DecimalFormat("0.00")
 
