@@ -31,19 +31,19 @@ object GodAppleListener : Listener {
         }
 
         cooldowns[event.player.uniqueId] = System.currentTimeMillis()
-        event.player sendMessage "&fYou are now on &dGod Apple &fcooldown for &51:00&f."
+        event.player sendMessage "&fYou are now on &dGod Apple &fcooldown for &51:30&f."
     }
 
     fun isOnCooldown(player: Player): Boolean {
         if (!cooldowns.containsKey(player.uniqueId)) return false
 
-        if ((cooldowns[player.uniqueId]?.plus((1000 * 60)))!! > System.currentTimeMillis()) {
+        if ((cooldowns[player.uniqueId]?.plus((1000 * 90)))!! > System.currentTimeMillis()) {
             return true
         }
         return false
     }
 
     fun getCooldown(player: Player): Int? {
-        return (cooldowns[player.uniqueId]?.plus((1000 * 60))?.minus(System.currentTimeMillis()))?.div(1000)?.toInt()
+        return (cooldowns[player.uniqueId]?.plus((1000 * 90))?.minus(System.currentTimeMillis()))?.div(1000)?.toInt()
     }
 }

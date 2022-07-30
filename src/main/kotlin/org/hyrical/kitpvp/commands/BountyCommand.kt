@@ -45,6 +45,8 @@ object BountyCommand {
         }
 
         targetProfile.bounty = amount
+        targetProfile.save()
+
         Bukkit.broadcastMessage(translate("&7[&d" + Constants.EXP_SYMBOL + "&7] " +
                 "&5${player.name} &fhas placed a bounty on &5${target.name} &ffor &d$${amount}&f!"))
      }

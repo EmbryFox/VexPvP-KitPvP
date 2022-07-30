@@ -18,17 +18,16 @@ object LeaderboardCommand {
         player.sendMessage(translate("&7&m--------------------------------------"))
 
         var i = 1
-        if (type.nameFirst == "Kills"){
-            for (map in KillLeaderboard.getLeaderboards()!!){
-                if (Bukkit.getOfflinePlayer(map.key) == null) continue
-                if (i == 11) continue
 
-                player sendMessage if (i == 1) "&51. &d${Bukkit.getOfflinePlayer(map.key).name} &7- &f${map.value}"
-                else "&7$i. &d${Bukkit.getOfflinePlayer(map.key).name} &7- &f${map.value}"
+        for (entry in KillLeaderboard.getLeaderboards()){
+            if (Bukkit.getOfflinePlayer(entry.key) == null) continue
+            if (i == 11) continue
 
-                i++
-            }
+            player sendMessage (if (i == 1) "&51." else "&7$i.") + " &d${Bukkit.getOfflinePlayer(entry.key)} &7- &f${entry.value}"
+
+            i++
         }
+
         player.sendMessage(translate("&7&m--------------------------------------"))
 
     }

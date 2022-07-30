@@ -18,8 +18,6 @@ data class Profile(
     var experience: Long = 0,
     var gems: Int = 0
 ) {
-    val kdrFormat = DecimalFormat("0.00")
-
     fun save() {
         ProfileService.service.storeAsync(uuid, this)
         ProfileService.cache[uuid] = this
@@ -30,7 +28,7 @@ data class Profile(
             return "0.0"
         }
 
-        return kdrFormat.format(kills.toDouble() / deaths).toString()
+        return DecimalFormat("0.00").format(kills.toDouble() / deaths).toString()
     }
 
     fun getLevel(): Int {

@@ -14,6 +14,7 @@ object ReloadCommand {
     fun reload(player: Player) {
         KitPvP.instance.reloadConfig()
         ScoreboardConfig.load()
+
         Announcer.load(KitPvP.instance.config)
 
         player sendMessage "&aKitPvP has been reloaded!"

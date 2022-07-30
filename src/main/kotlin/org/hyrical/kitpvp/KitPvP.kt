@@ -3,6 +3,7 @@ package org.hyrical.kitpvp
 import io.github.nosequel.data.DataHandler
 import io.github.nosequel.data.connection.flatfile.FlatfileConnectionPool
 import io.github.nosequel.data.connection.mongo.MongoConnectionPool
+import me.activated.core.plugin.AquaCoreAPI
 import net.evilblock.cubed.command.CommandHandler
 import net.evilblock.cubed.scoreboard.ScoreboardHandler
 import net.evilblock.cubed.util.bukkit.Tasks
@@ -25,6 +26,7 @@ import org.hyrical.kitpvp.koth.storage.KothHandler
 import org.hyrical.kitpvp.leaderboard.KillLeaderboard
 import org.hyrical.kitpvp.listeners.*
 import org.hyrical.kitpvp.mongo.MongoURIConnection
+import org.hyrical.kitpvp.nametag.NameTagProvider
 import org.hyrical.kitpvp.profiles.ProfileService
 import org.hyrical.kitpvp.profiles.listener.ProfileListener
 import org.hyrical.kitpvp.scoreboard.ScoreboardConfig
@@ -78,6 +80,7 @@ class KitPvP : JavaPlugin() {
         CommandHandler.registerClass(ReloadCommand.javaClass)
         CommandHandler.registerClass(StatsCommand.javaClass)
         CommandHandler.registerClass(BountyCommand.javaClass)
+        CommandHandler.registerClass(BalanceCommand.javaClass)
         CommandHandler.registerClass(SpawnCommand.javaClass)
         CommandHandler.registerClass(LeaderboardCommand.javaClass)
         CommandHandler.registerClass(RepairCommand.javaClass)
@@ -97,6 +100,9 @@ class KitPvP : JavaPlugin() {
         server.pluginManager.registerEvents(GodAppleListener, this)
         server.pluginManager.registerEvents(BountyListener(), this)
         server.pluginManager.registerEvents(BowBoostListener(), this)
+        server.pluginManager.registerEvents(ChatListener(), this)
+
+        NameTagProvider.runTaskTimer(this, 0L, 60L)
 
         Announcer.load(config)
 
@@ -112,4 +118,8 @@ fun translate(s: String): String {
 
 infix fun Player.sendMessage(s: String) {
     this.sendMessage(translate(s))
+}
+
+fun Player.getColoredName(): String {
+    return AquaCoreAPI.INSTANCE.getPlayerData(uniqueId).highestRank.color.toString() + player.name
 }

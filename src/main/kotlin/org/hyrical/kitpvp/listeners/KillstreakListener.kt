@@ -19,6 +19,7 @@ class KillstreakListener : Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     fun onDeath(event: PlayerDeathEvent) {
         if (event.entity.killer == null) return
+        if (event.entity.killer == event.entity) return
 
         val profile = event.entity.killer.getProfile()
 
