@@ -1,4 +1,4 @@
-package org.hyrical.kitpvp.commands
+package org.hyrical.kitpvp.commands.leaderboard
 
 import net.evilblock.cubed.command.Command
 import net.evilblock.cubed.command.data.parameter.Param
@@ -7,7 +7,6 @@ import org.bukkit.entity.Player
 import org.hyrical.kitpvp.leaderboard.KillLeaderboard
 import org.hyrical.kitpvp.sendMessage
 import org.hyrical.kitpvp.translate
-import java.util.*
 
 object LeaderboardCommand {
 
@@ -20,12 +19,14 @@ object LeaderboardCommand {
 
         var i = 1
         if (type.nameFirst == "Kills"){
-            for (c in 0..10){
-                for (map in KillLeaderboard.getSortedMap()){
+            for (map in KillLeaderboard.getLeaderboards()!!){
+                if (Bukkit.getOfflinePlayer(map.key) == null) continue
+                if (i == 11) continue
 
-                    player sendMessage if (i == 1) "&51. &d${Bukkit.getOfflinePlayer(map.key).name} &7- &f${map.value}" else "&7$i. &d${Bukkit.getOfflinePlayer(map.key).name} &7- &f${map.value}"
-                    i++
-                }
+                player sendMessage if (i == 1) "&51. &d${Bukkit.getOfflinePlayer(map.key).name} &7- &f${map.value}"
+                else "&7$i. &d${Bukkit.getOfflinePlayer(map.key).name} &7- &f${map.value}"
+
+                i++
             }
         }
         player.sendMessage(translate("&7&m--------------------------------------"))

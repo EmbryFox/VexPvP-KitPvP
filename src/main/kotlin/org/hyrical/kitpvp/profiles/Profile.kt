@@ -1,6 +1,7 @@
 package org.hyrical.kitpvp.profiles
 
 import org.bukkit.entity.Player
+import java.text.DecimalFormat
 import java.util.*
 import kotlin.math.floor
 
@@ -17,6 +18,8 @@ data class Profile(
     var experience: Long = 0,
     var gold: Int = 0
 ) {
+    val kdrFormat = DecimalFormat("0.00")
+
     fun save() {
         ProfileService.service.storeAsync(uuid, this)
         ProfileService.cache[uuid] = this
@@ -27,7 +30,7 @@ data class Profile(
             return "0.0"
         }
 
-        return (kills.toDouble() / deaths).toString()
+        return kdrFormat.format(kills.toDouble() / deaths).toString()
     }
 
     fun getLevel(): Int {

@@ -14,7 +14,7 @@ object StatsCommand {
         val profile = target.getProfile()
 
         player.sendMessage(translate("&7&m------------------------------"))
-        player.sendMessage(translate("&5${target.name} &fStats"))
+        player.sendMessage(translate("&5${target.name}&f's Stats"))
         player.sendMessage(translate("&7&m------------------------------"))
         player.sendMessage(translate("&fKills: &d${profile.kills}"))
         player.sendMessage(translate("&fDeaths: &d${profile.deaths}"))

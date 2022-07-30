@@ -12,6 +12,8 @@ import org.bukkit.plugin.java.JavaPlugin
 import org.hyrical.kitpvp.announcer.Announcer
 import org.hyrical.kitpvp.combat.CombatTagHandler
 import org.hyrical.kitpvp.commands.*
+import org.hyrical.kitpvp.commands.leaderboard.LeaderboardCommand
+import org.hyrical.kitpvp.commands.leaderboard.LeaderboardType
 import org.hyrical.kitpvp.commands.leaderboard.type.LeaderboardTypeParam
 import org.hyrical.kitpvp.kits.Kit
 import org.hyrical.kitpvp.kits.KitsService

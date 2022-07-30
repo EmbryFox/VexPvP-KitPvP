@@ -4,12 +4,14 @@ import net.evilblock.cubed.command.Command
 import net.evilblock.cubed.command.data.parameter.Param
 import net.evilblock.cubed.util.time.TimeUtil
 import org.bukkit.entity.Player
+import org.hyrical.kitpvp.KitPvP
 import org.hyrical.kitpvp.koth.Event
 import org.hyrical.kitpvp.koth.koth.Koth
 import org.hyrical.kitpvp.koth.koth.serializer.LocationSerializer
 import org.hyrical.kitpvp.koth.storage.KothHandler
 import org.hyrical.kitpvp.sendMessage
 import org.hyrical.kitpvp.translate
+import java.io.File
 
 object KothCommands {
 
@@ -36,9 +38,8 @@ object KothCommands {
             return
         }
 
-        KothHandler.handler.delete(
-            name
-        )
+        val file = File(KitPvP.instance.dataFolder.absolutePath + "/koth/$name")
+        file.delete()
 
         KothHandler.koths.remove(name)
 

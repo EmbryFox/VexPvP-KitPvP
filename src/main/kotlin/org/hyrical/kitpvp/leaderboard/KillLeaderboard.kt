@@ -13,7 +13,7 @@ object KillLeaderboard : BukkitRunnable() {
     val cache: LinkedHashMap<UUID, Int> = linkedMapOf()
 
     fun load() {
-        runTaskTimerAsynchronously(KitPvP.instance, 20L, 20L * 60L * 5L)
+        runTaskTimerAsynchronously(KitPvP.instance, 20L, 20L * 60L)
     }
 
     override fun run() {
@@ -24,7 +24,19 @@ object KillLeaderboard : BukkitRunnable() {
         }
     }
 
-    fun getSortedMap(): Map<UUID, Int> {
-        return cache.toList().sortedBy { (_, v) -> v }.toMap()
+    fun getLeaderboards(): Map<UUID, Int> {
+        val sortedMap: HashMap<UUID, Int> = hashMapOf()
+
+        sortedMap.putAll(cache)
+
+        sortedMap
+            .toList()
+            .sortedBy { (_, v) ->
+                v
+            }
+            .toMap()
+
+        return sortedMap
     }
+
 }

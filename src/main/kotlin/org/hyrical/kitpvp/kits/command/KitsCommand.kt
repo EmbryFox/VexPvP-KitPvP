@@ -5,12 +5,14 @@ import net.evilblock.cubed.command.data.parameter.Param
 import net.evilblock.cubed.util.time.TimeUtil
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
+import org.hyrical.kitpvp.KitPvP
 import org.hyrical.kitpvp.kits.Kit
 import org.hyrical.kitpvp.kits.KitsService
 import org.hyrical.kitpvp.kits.serializer.ItemStackSerializer
 import org.hyrical.kitpvp.profiles.getProfile
 import org.hyrical.kitpvp.sendMessage
 import org.hyrical.kitpvp.translate
+import java.io.File
 import java.util.*
 import kotlin.time.Duration
 import kotlin.time.ExperimentalTime
@@ -147,8 +149,10 @@ object KitsCommand {
             return
         }
 
+        val file = File(KitPvP.instance.dataFolder.absolutePath + "/kit/${kitName}")
+        file.delete()
+
         KitsService.kits.remove(kitName)
-        KitsService.handler.delete(kitName)
 
         player sendMessage "&cThat kit has been deleted."
     }
