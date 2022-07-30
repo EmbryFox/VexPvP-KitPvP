@@ -24,7 +24,7 @@ abstract class NumberButton(
             desc.add("${ChatColor.GREEN}${ChatColor.BOLD}SHIFT LEFT-CLICK ${ChatColor.GREEN}to increase by +10")
             desc.add("${ChatColor.RED}${ChatColor.BOLD}SHIFT RIGHT-CLICK ${ChatColor.RED}to decrease by -10")
             desc.add("")
-            desc.add("${ChatColor.WHITE}&fPrice ${ChatColor.GRAY}➥ ${ChatColor.GREEN}$price")
+            desc.add("${ChatColor.GRAY}Price ${ChatColor.WHITE}➥ ${ChatColor.GREEN}$price")
         }
     }
 

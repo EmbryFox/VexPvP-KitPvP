@@ -34,7 +34,7 @@ class ConfirmMenu(
 
         buttons[4] = object : NumberButton(amount, IntRange(1, 500), pricePerItem) {
             override fun getName(player: Player): String {
-                return translate("&fCurrent amount &7➥ &a$amount")
+                return translate("&7Current amount &f➥ &a$amount")
             }
 
             override fun onChange(number: Int) {
@@ -70,6 +70,9 @@ class ConfirmMenu(
             player.sendMessage(translate("&cYou don't have enough gems to buy this!"))
             return
         }
+
+        profile.gems -= pricePerItem * amount
+        profile.save()
 
         player.closeInventory()
         callback.invoke(true, amount)

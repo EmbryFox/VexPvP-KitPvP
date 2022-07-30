@@ -20,7 +20,7 @@ class KeyButton(private val name: String, private val description: List<String>,
     override fun getDescription(player: Player): List<String> {
         val desc = description.map { translate(it) }.toMutableList()
         desc.add(translate("&e"))
-        desc.add("&fPrice per item &7➥ &a$amountPer")
+        desc.add(translate("&7Price per item &f➥ &a$amountPer"))
 
         return desc
     }

@@ -11,6 +11,7 @@ import org.bukkit.ChatColor
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import org.hyrical.kitpvp.announcer.Announcer
+import org.hyrical.kitpvp.buycraft.command.GemCommands
 import org.hyrical.kitpvp.buycraft.command.StoreCommand
 import org.hyrical.kitpvp.combat.CombatTagHandler
 import org.hyrical.kitpvp.commands.*
@@ -87,6 +88,7 @@ class KitPvP : JavaPlugin() {
         CommandHandler.registerClass(RulesCommand.javaClass)
         CommandHandler.registerClass(AdCommand.javaClass)
         CommandHandler.registerClass(StoreCommand.javaClass)
+        CommandHandler.registerClass(GemCommands.javaClass)
 
         CommandHandler.registerClass(KothCommands.javaClass)
 
