@@ -13,6 +13,7 @@ import org.hyrical.kitpvp.buycraft.buttons.InfoButton
 import org.hyrical.kitpvp.buycraft.buttons.SecondaryInfoButton
 import org.hyrical.kitpvp.buycraft.buttons.ThirdendaryInfoButton
 import org.hyrical.kitpvp.buycraft.menu.impl.crates.CrateKeysMenu
+import org.hyrical.kitpvp.buycraft.menu.impl.ranks.RanksMenu
 import org.hyrical.kitpvp.translate
 
 class MainBuycraftMenu : Menu("Store ➥ Main") {
@@ -47,6 +48,11 @@ class MainBuycraftMenu : Menu("Store ➥ Main") {
         override fun getMaterial(player: Player): Material {
             return Material.BOOK_AND_QUILL
         }
+
+        override fun clicked(player: Player, slot: Int, clickType: ClickType, view: InventoryView) {
+            RanksMenu().openMenu(player)
+        }
+
     }
 
     class TagButton : Button() {
