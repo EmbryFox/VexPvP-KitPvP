@@ -7,7 +7,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-object KillLeaderboard : BukkitRunnable() {
+object DeathLeaderboard : BukkitRunnable() {
 
     val cache: LinkedHashMap<UUID, Int> = linkedMapOf()
 
@@ -19,7 +19,7 @@ object KillLeaderboard : BukkitRunnable() {
         cache.clear()
 
         ProfileService.service.retrieveAll().forEach {
-            cache[it.uuid] = it.kills
+            cache[it.uuid] = it.deaths
         }
     }
 

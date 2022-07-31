@@ -49,6 +49,7 @@ object KothCommands {
     @Command(["koth activate"], permission = "kitpvp.koth.activate")
     @JvmStatic
     fun activate(player: Player, @Param("name") name: String) {
+        name.lowercase()
         if (KothHandler.activeKoth != null) {
             player sendMessage "&cThere is already an active KoTH."
             return
@@ -67,6 +68,7 @@ object KothCommands {
     @Command(["koth deactivate"], permission = "kitpvp.koth.deactivate")
     @JvmStatic
     fun deactivate(player: Player, @Param("name") name: String) {
+        name.lowercase()
         if (KothHandler.activeKoth == null) {
             player sendMessage "&cThere isn't already an active KoTH."
             return
@@ -84,6 +86,7 @@ object KothCommands {
     @Command(["koth dist", "koth distance"], permission = "kitpvp.koth.distance")
     @JvmStatic
     fun distance(player: Player, @Param("name") name: String, @Param("distance") distance: Int) {
+        name.lowercase()
         val koth = KothHandler.koths[name] ?: run {
             player sendMessage "&cThat KoTH doesn't exist."
             return
@@ -98,6 +101,8 @@ object KothCommands {
     @Command(["koth time"], permission = "kitpvp.koth.time")
     @JvmStatic
     fun time(player: Player, @Param("name") name: String, @Param("time") time: String) {
+
+        name.lowercase()
 
         val parsedTime: Int
 
@@ -127,6 +132,7 @@ object KothCommands {
     @Command(["koth loc", "koth location"], permission = "kitpvp.koth.loc")
     @JvmStatic
     fun loc(player: Player, @Param("name") name: String) {
+        name.lowercase()
         val koth = KothHandler.koths[name] ?: run {
             player sendMessage "&cThat KoTH doesn't exist."
             return
@@ -141,6 +147,7 @@ object KothCommands {
     @Command(["koth tp", "koth teleport"], permission = "kitpvp.koth.teleport")
     @JvmStatic
     fun teleport(player: Player, @Param("name") name: String) {
+        name.lowercase()
         val koth = KothHandler.koths[name] ?: run {
             player sendMessage "&cThat KoTH doesn't exist."
             return
