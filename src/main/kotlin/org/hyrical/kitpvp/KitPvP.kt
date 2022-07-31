@@ -18,6 +18,7 @@ import org.hyrical.kitpvp.commands.*
 import org.hyrical.kitpvp.commands.leaderboard.LeaderboardCommand
 import org.hyrical.kitpvp.commands.leaderboard.LeaderboardType
 import org.hyrical.kitpvp.commands.leaderboard.type.LeaderboardTypeParam
+import org.hyrical.kitpvp.commands.shop.ShopCommand
 import org.hyrical.kitpvp.kits.Kit
 import org.hyrical.kitpvp.kits.KitsService
 import org.hyrical.kitpvp.kits.command.KitsCommand
@@ -91,6 +92,7 @@ class KitPvP : JavaPlugin() {
         CommandHandler.registerClass(AdCommand.javaClass)
         CommandHandler.registerClass(StoreCommand.javaClass)
         CommandHandler.registerClass(GemCommands.javaClass)
+        CommandHandler.registerClass(ShopCommand.javaClass)
 
         CommandHandler.registerClass(KothCommands.javaClass)
 

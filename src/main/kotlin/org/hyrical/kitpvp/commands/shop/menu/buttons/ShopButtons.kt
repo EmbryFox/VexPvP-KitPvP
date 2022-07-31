@@ -9,6 +9,11 @@ import org.bukkit.inventory.InventoryView
 import org.bukkit.inventory.ItemStack
 import org.bukkit.potion.Potion
 import org.bukkit.potion.PotionType
+import org.hyrical.kitpvp.commands.shop.menu.menus.ArmorMenu
+import org.hyrical.kitpvp.commands.shop.menu.menus.MiscMenu
+import org.hyrical.kitpvp.commands.shop.menu.menus.PotionMenu
+import org.hyrical.kitpvp.commands.shop.menu.menus.WeaponsMenu
+import org.hyrical.kitpvp.sendMessage
 import org.hyrical.kitpvp.translate
 
 class ShopButtons {
@@ -24,7 +29,9 @@ class ArmorButton : Button() {
     }
 
     override fun clicked(player: Player, slot: Int, clickType: ClickType, view: InventoryView) {
-        // open inventory
+        player.closeInventory()
+
+        ArmorMenu().openMenu(player)
     }
 
 }
@@ -42,7 +49,7 @@ class PotionButton : Button() {
     }
 
     override fun clicked(player: Player, slot: Int, clickType: ClickType, view: InventoryView) {
-        // open inventory
+        PotionMenu().openMenu(player)
     }
 
 }
@@ -57,7 +64,7 @@ class MiscButton : Button() {
     }
 
     override fun clicked(player: Player, slot: Int, clickType: ClickType, view: InventoryView) {
-        // open inventory
+        MiscMenu().openMenu(player)
     }
 
 }
@@ -72,7 +79,7 @@ class WeaponsButton : Button() {
     }
 
     override fun clicked(player: Player, slot: Int, clickType: ClickType, view: InventoryView) {
-        // open inventory
+        WeaponsMenu().openMenu(player)
     }
 
 }
@@ -87,7 +94,7 @@ class EnchantmentButton : Button() {
     }
 
     override fun clicked(player: Player, slot: Int, clickType: ClickType, view: InventoryView) {
-        // open inventory
+        player sendMessage "&cThis feature is coming soon."
     }
 
 }

@@ -12,6 +12,7 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.potion.Potion
 import org.bukkit.potion.PotionEffectType
 import org.bukkit.potion.PotionType
+import org.hyrical.kitpvp.commands.shop.menu.buttons.*
 import org.hyrical.kitpvp.translate
 
 class ShopMenu : Menu() {
@@ -22,7 +23,13 @@ class ShopMenu : Menu() {
     override fun getButtons(player: Player): Map<Int, Button> {
         val buttons: HashMap<Int, Button> = hashMapOf()
 
-        buttons[1] =
+        buttons[2] = ArmorButton()
+        buttons[3] = PotionButton()
+        buttons[4] = MiscButton()
+        buttons[5] = WeaponsButton()
+        buttons[6] = EnchantmentButton()
+
+        return buttons
     }
 }
 
