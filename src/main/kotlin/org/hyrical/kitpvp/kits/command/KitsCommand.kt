@@ -58,10 +58,10 @@ object KitsCommand {
         player sendMessage("&7&m---------------------------------")
     }
 
-    @OptIn(ExperimentalTime::class)
     @Command(["kit"], description = "Apply a kit")
     @JvmStatic
     fun kitCommand(player: Player, @Param("kit", "xzadsafaefreasrfaedfaerdfaedaedsadasdassdasdasd") kitName: String) {
+        kitName.lowercase()
         if (kitName == "xzadsafaefreasrfaedfaerdfaedaedsadasdassdasdasd") {
             kits(player, "fid2ieu923t0wi0adjifwjnbdjivfedjnerwjwje")
             return

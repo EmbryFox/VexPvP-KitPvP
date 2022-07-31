@@ -18,12 +18,15 @@ import org.hyrical.kitpvp.commands.*
 import org.hyrical.kitpvp.commands.leaderboard.LeaderboardCommand
 import org.hyrical.kitpvp.commands.leaderboard.LeaderboardType
 import org.hyrical.kitpvp.commands.leaderboard.type.LeaderboardTypeParam
+import org.hyrical.kitpvp.commands.shop.ShopCommand
 import org.hyrical.kitpvp.kits.Kit
 import org.hyrical.kitpvp.kits.KitsService
 import org.hyrical.kitpvp.kits.command.KitsCommand
 import org.hyrical.kitpvp.koth.commands.KothCommands
 import org.hyrical.kitpvp.koth.koth.Koth
+import org.hyrical.kitpvp.koth.koth.listener.BowPreventionListener
 import org.hyrical.kitpvp.koth.storage.KothHandler
+import org.hyrical.kitpvp.leaderboard.DeathLeaderboard
 import org.hyrical.kitpvp.leaderboard.KillLeaderboard
 import org.hyrical.kitpvp.listeners.*
 import org.hyrical.kitpvp.mongo.MongoURIConnection
@@ -89,6 +92,7 @@ class KitPvP : JavaPlugin() {
         CommandHandler.registerClass(AdCommand.javaClass)
         CommandHandler.registerClass(StoreCommand.javaClass)
         CommandHandler.registerClass(GemCommands.javaClass)
+        CommandHandler.registerClass(ShopCommand.javaClass)
 
         CommandHandler.registerClass(KothCommands.javaClass)
 
@@ -103,12 +107,14 @@ class KitPvP : JavaPlugin() {
         server.pluginManager.registerEvents(BountyListener(), this)
         server.pluginManager.registerEvents(BowBoostListener(), this)
         server.pluginManager.registerEvents(ChatListener(), this)
+        server.pluginManager.registerEvents(BowPreventionListener(), this)
 
         NameTagProvider.runTaskTimer(this, 0L, 60L)
 
         Announcer.load(config)
 
         KillLeaderboard.load()
+        DeathLeaderboard.load()
     }
 
 

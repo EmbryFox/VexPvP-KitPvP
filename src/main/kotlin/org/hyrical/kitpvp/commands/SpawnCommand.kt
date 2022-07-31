@@ -2,6 +2,7 @@ package org.hyrical.kitpvp.commands
 
 import net.evilblock.cubed.command.Command
 import org.bukkit.Bukkit
+import org.bukkit.GameMode
 import org.bukkit.Location
 import org.bukkit.entity.Player
 import org.bukkit.scheduler.BukkitRunnable
@@ -14,6 +15,12 @@ object SpawnCommand {
     @Command(["spawn"], description = "Teleport to the spawn")
     @JvmStatic
     fun spawn(player: Player) {
+        if (player.gameMode == GameMode.CREATIVE){
+            player.teleport(Location(Bukkit.getWorld("world"), 0.0, 111.0, 8.0))
+
+            return
+        }
+
         if (player.isCombatTagged()) {
             player sendMessage "&cYou cannot use this command while in combat."
             return
