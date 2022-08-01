@@ -40,10 +40,10 @@ object NameTagProvider : BukkitRunnable() {
 
         lines.add(translate(if (aProfile.isVanished) "&7&o*$player.name" else "$aProfile.highestRank.color$player.name"))
 
-        if (!aProfile.isInStaffMode || player.gameMode != GameMode.CREATIVE) {
+        /* (!aProfile.isInStaffMode || player.gameMode != GameMode.CREATIVE) {
             lines.add(translate( "${player.health.roundToInt()} &c❤"))
-        }
-        
+        }*/
+
         return lines
     }
 }
