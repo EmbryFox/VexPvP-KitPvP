@@ -131,7 +131,7 @@ class KitPvP : JavaPlugin() {
             Economy::class.java,
             Vault(),
             this,
-            ServicePriority.Normal
+            ServicePriority.Lowest
         )
 
 
