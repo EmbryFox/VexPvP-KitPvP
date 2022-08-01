@@ -38,7 +38,7 @@ object NameTagProvider : BukkitRunnable() {
                 .format(profile.bounty)}" else return lines))
         }
 
-        lines.add(translate(if (aProfile.isVanished) "&7&o* " + aProfile.highestRank.color + player.name else aProfile.highestRank.color.toString() + player.name))
+        lines.add(translate(if (aProfile.isVanished) "&7&o*$player.name" else "$aProfile.highestRank.color$player.name"))
 
         if (!aProfile.isInStaffMode) {
             lines.add(translate( "${player.health.roundToInt()}" + " &c❤"))
