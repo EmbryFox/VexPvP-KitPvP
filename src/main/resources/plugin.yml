@@ -2,3 +2,5 @@ name: VexKits
 version: 1.0
 main: org.hyrical.kitpvp.KitPvP
 author: Hyrical Development Team
+loadbefore:
+  - CoinFlip

@@ -29,7 +29,7 @@ class KillstreakListener : Listener {
 
         profile.kills++
         profile.killstreak++
-        profile.experience += KitPvP.random.nextInt(5, 10)
+        profile.experience += KitPvP.random.nextInt(10, 20)
         profile.balance += newBal
         profile.save()
 

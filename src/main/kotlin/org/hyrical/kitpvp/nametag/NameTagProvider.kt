@@ -30,19 +30,15 @@ object NameTagProvider : BukkitRunnable() {
         val aProfile = AquaCoreAPI.INSTANCE.getPlayerData(player.uniqueId)
 
         if (aProfile.isInStaffMode) {
-            lines.add(translate("&7[ModMode]"))
+            lines.add(translate("&7[Mod Mode]"))
         }
 
         if (profile.bounty != 0.0){
-            lines.add(translate(if (!aProfile.isInStaffMode || player.gameMode != GameMode.CREATIVE) "&6Bounty: &a$${NumberFormat.getInstance(Locale.US)
+            lines.add(translate(if (!aProfile.isInStaffMode || player.gameMode != GameMode.CREATIVE) "&fBounty: &d$${NumberFormat.getInstance(Locale.US)
                 .format(profile.bounty)}" else return lines))
         }
 
-        lines.add(translate(if (aProfile.isVanished) "&7&o*$player.name" else "$aProfile.highestRank.color$player.name"))
-
-        if (!aProfile.isInStaffMode || player.gameMode != GameMode.CREATIVE) {
-            lines.add(translate( "${player.health.roundToInt()} &c❤"))
-        }
+        lines.add(translate(if (aProfile.isVanished) "&7&o*${player.name}" else "${aProfile.highestRank.color}${player.name}"))
         
         return lines
     }

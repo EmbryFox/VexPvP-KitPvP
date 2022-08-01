@@ -62,7 +62,7 @@ object KothCommands {
 
         koth.activate()
 
-        player sendMessage "&aYou have activated the ${koth.name}&a."
+        player sendMessage "&aYou have activated the ${koth.name.capitalize()}&a."
     }
 
     @Command(["koth deactivate"], permission = "kitpvp.koth.deactivate")
@@ -74,20 +74,20 @@ object KothCommands {
             return
         }
 
-        val koth = KothHandler.koths[name] ?: run {
+        val koth = KothHandler.koths[name.lowercase()] ?: run {
             player sendMessage "&cThat KoTH doesn't exist."
             return
         }
 
         koth.deactivate()
-        player sendMessage "&aYou have deactivated the ${koth.name}&a."
+        player sendMessage "&aYou have deactivated the ${koth.name.capitalize()}&a."
     }
 
     @Command(["koth dist", "koth distance"], permission = "kitpvp.koth.distance")
     @JvmStatic
     fun distance(player: Player, @Param("name") name: String, @Param("distance") distance: Int) {
         name.lowercase()
-        val koth = KothHandler.koths[name] ?: run {
+        val koth = KothHandler.koths[name.lowercase()] ?: run {
             player sendMessage "&cThat KoTH doesn't exist."
             return
         }
@@ -95,7 +95,7 @@ object KothCommands {
         koth.radius = distance
         koth.save()
 
-        player sendMessage "&aYou have set the distance for ${koth.name} to $distance&a."
+        player sendMessage "&aYou have set the distance for ${koth.name.capitalize()} to $distance&a."
     }
 
     @Command(["koth time"], permission = "kitpvp.koth.time")
@@ -113,7 +113,7 @@ object KothCommands {
             return
         }
 
-        val koth = KothHandler.koths[name] ?: run {
+        val koth = KothHandler.koths[name.lowercase()] ?: run {
             player sendMessage "&cThat KoTH doesn't exist."
             return
         }
@@ -126,14 +126,14 @@ object KothCommands {
 
         koth.save()
 
-        player sendMessage "&aYou have set the time for ${koth.name} to ${TimeUtil.formatIntoMMSS(parsedTime)}&a."
+        player sendMessage "&aYou have set the time for ${koth.name.capitalize()} to ${TimeUtil.formatIntoMMSS(parsedTime)}&a."
     }
 
     @Command(["koth loc", "koth location"], permission = "kitpvp.koth.loc")
     @JvmStatic
     fun loc(player: Player, @Param("name") name: String) {
         name.lowercase()
-        val koth = KothHandler.koths[name] ?: run {
+        val koth = KothHandler.koths[name.lowercase()] ?: run {
             player sendMessage "&cThat KoTH doesn't exist."
             return
         }
@@ -141,14 +141,14 @@ object KothCommands {
         koth.location = LocationSerializer.itemTo64(player.location)!!
         koth.save()
 
-        player sendMessage "&aYou have set the location for ${koth.name} to your location."
+        player sendMessage "&aYou have set the location for ${koth.name.capitalize()} to your location."
     }
 
     @Command(["koth tp", "koth teleport"], permission = "kitpvp.koth.teleport")
     @JvmStatic
     fun teleport(player: Player, @Param("name") name: String) {
         name.lowercase()
-        val koth = KothHandler.koths[name] ?: run {
+        val koth = KothHandler.koths[name.lowercase()] ?: run {
             player sendMessage "&cThat KoTH doesn't exist."
             return
         }
@@ -160,7 +160,7 @@ object KothCommands {
     @JvmStatic
     fun list(player: Player) {
         for (koth in KothHandler.koths){
-            player.sendMessage(translate("&d${koth.value.name} &7- &f${TimeUtil.formatIntoMMSS(koth.value.duration)}"))
+            player.sendMessage(translate("&d${koth.value.name.capitalize()} &7- &f${TimeUtil.formatIntoMMSS(koth.value.duration)}"))
         }
     }
 }

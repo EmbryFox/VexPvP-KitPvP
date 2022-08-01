@@ -25,16 +25,11 @@ object BountyCommand {
             return
         }
 
-<<<<<<< Updated upstream
         if (targetProfile.bounty != 0.0){
-            targetProfile.bounty += amount
-            Bukkit.broadcastMessage(translate("&7[&d" + Constants.EXP_SYMBOL + "&7] " +
-                    "&5${player.name} &fhas placed a bounty on &5${target.name} &ffor &d$${amount}&f!"))
+            player sendMessage "&cThat player already has a bounty."
             return
         }
 
-=======
->>>>>>> Stashed changes
         if (amount.isNaN() || amount < 0){
             player sendMessage "&cThat number is invalid."
             return

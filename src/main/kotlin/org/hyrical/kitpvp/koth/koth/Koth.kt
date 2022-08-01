@@ -11,6 +11,7 @@ import org.hyrical.kitpvp.sendMessage
 import org.hyrical.kitpvp.translate
 import java.util.*
 import kotlin.math.abs
+import kotlin.math.round
 
 class Koth(
            override var name: String,
@@ -32,11 +33,16 @@ class Koth(
         this.remainingTime = duration
 
         for (player in Bukkit.getOnlinePlayers()){
-            LunarClientAPI.getInstance().sendWaypoint(player, LCWaypoint("$name KoTH", LocationSerializer.itemFrom64(location), Color.PURPLE.asRGB(), true))
+            LunarClientAPI.getInstance().sendWaypoint(player, LCWaypoint("${name.capitalize()} KoTH", LocationSerializer.itemFrom64(location), Color.PURPLE.asRGB(), true))
 
-            player.sendTitle(translate("&5&lKOTH"), translate("$name &fhas been started!"))
+            player.sendTitle(translate("&5&lKOTH"), translate("${name.capitalize()} &fhas been started!"))
             player.playSound(player.location, Sound.ENDERDRAGON_HIT, 2.0f, 2.0f)
         }
+
+        Bukkit.broadcastMessage(translate("&7&m---------------------------"))
+        Bukkit.broadcastMessage(translate("&5${name.capitalize()} &fhas started!"))
+        Bukkit.broadcastMessage(translate("&fCoordinates: &d${round(LocationSerializer.itemFrom64(location)?.x!!)}&7, &d${round(LocationSerializer.itemFrom64(location)?.z!!)}"))
+        Bukkit.broadcastMessage(translate("&7&m---------------------------"))
     }
 
     override fun tick() {
@@ -49,7 +55,7 @@ class Koth(
                 resetCapTime()
             } else {
                 if (remainingTime % 10 == 0 && remainingTime > 1) {
-                    capper sendMessage "&7[&5&lKOTH&7] &fYou are attempting to control &d${name}&f."
+                    capper sendMessage "&7[&5&lKOTH&7] &fYou are attempting to control &d${name.capitalize()}&f."
                 }
                 if (remainingTime <= 0) {
                     finishCapping(capper)
@@ -80,7 +86,7 @@ class Koth(
         KothHandler.activeKoth = null
 
         for (player in Bukkit.getOnlinePlayers()){
-            LunarClientAPI.getInstance().removeWaypoint(player, LCWaypoint("$name KoTH", LocationSerializer.itemFrom64(location), Color.PURPLE.asRGB(), true))
+            LunarClientAPI.getInstance().removeWaypoint(player, LCWaypoint("${name.capitalize()} KoTH", LocationSerializer.itemFrom64(location), Color.PURPLE.asRGB(), true))
         }
     }
 
@@ -108,7 +114,7 @@ class Koth(
 
         Bukkit.getOnlinePlayers().forEach {
             it sendMessage "&7&m----------------------------------"
-            it sendMessage "&5${capper.name} &fhas captured the &d${name} &fKOTH!"
+            it sendMessage "&5${capper.name} &fhas captured the &d${name.capitalize()} &fKOTH!"
             it sendMessage "&7&m----------------------------------"
 
             it.playSound(it.location, Sound.WITHER_SPAWN, 1.0f, 1.0f)
