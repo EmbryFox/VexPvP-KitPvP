@@ -6,7 +6,7 @@ import org.hyrical.kitpvp.buycraft.MainBuycraftMenu
 
 object StoreCommand {
 
-    @Command(["store"])
+    @Command(["store"], permission = "kitpvp.buycraft.store")
     @JvmStatic
     fun store(player: Player) {
         MainBuycraftMenu().openMenu(player)
