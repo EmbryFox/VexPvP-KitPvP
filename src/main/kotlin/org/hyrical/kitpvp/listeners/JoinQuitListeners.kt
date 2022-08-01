@@ -1,6 +1,7 @@
 package org.hyrical.kitpvp.listeners
 
 import me.activated.core.plugin.AquaCoreAPI
+import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
@@ -13,7 +14,7 @@ class JoinQuitListeners : Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     fun onJoin(event: PlayerJoinEvent) {
-        event.joinMessage = translate("&8[&a+&8] &r${AquaCoreAPI.INSTANCE.getPlayerData(event.player.uniqueId).nameColor}${event.player.name} &r&7#${KitPvP.instance!!.config.getInt("joins")}")
+        Bukkit.broadcastMessage(translate("&8[&a+&8] &r${AquaCoreAPI.INSTANCE.getPlayerData(event.player.uniqueId).nameColor}${event.player.name}"))
         if (event.player.hasPlayedBefore()) return
 
         KitPvP.instance.config.set("joins", KitPvP.instance.config.getInt("joins") + 1)
