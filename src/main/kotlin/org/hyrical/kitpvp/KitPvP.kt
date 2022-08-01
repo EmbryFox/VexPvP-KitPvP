@@ -7,8 +7,11 @@ import me.activated.core.plugin.AquaCoreAPI
 import net.evilblock.cubed.command.CommandHandler
 import net.evilblock.cubed.scoreboard.ScoreboardHandler
 import net.evilblock.cubed.util.bukkit.Tasks
+import net.milkbowl.vault.economy.Economy
+import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.entity.Player
+import org.bukkit.plugin.ServicePriority
 import org.bukkit.plugin.java.JavaPlugin
 import org.hyrical.kitpvp.announcer.Announcer
 import org.hyrical.kitpvp.buycraft.command.GemCommands
@@ -38,7 +41,9 @@ import org.hyrical.kitpvp.scoreboard.ScoreboardProvider
 import org.hyrical.kitpvp.scoreboard.animation.type.LinkAnimation
 import org.hyrical.kitpvp.scoreboard.animation.type.TitleAnimation
 import org.hyrical.kitpvp.spigot.BowBoostListener
+import org.hyrical.kitpvp.vault.Vault
 import kotlin.random.Random
+
 
 class KitPvP : JavaPlugin() {
 
@@ -115,6 +120,14 @@ class KitPvP : JavaPlugin() {
 
         KillLeaderboard.load()
         DeathLeaderboard.load()
+
+        Bukkit.getServicesManager().register(
+            Economy::class.java,
+            Vault(),
+            this,
+            ServicePriority.Normal
+        )
+
     }
 
 

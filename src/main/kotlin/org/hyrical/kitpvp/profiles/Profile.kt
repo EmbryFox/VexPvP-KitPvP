@@ -1,5 +1,6 @@
 package org.hyrical.kitpvp.profiles
 
+import org.bukkit.OfflinePlayer
 import org.bukkit.entity.Player
 import java.text.DecimalFormat
 import java.util.*
@@ -46,4 +47,8 @@ fun Player.canSeeKillMessages(): Boolean {
 
 fun Player.getProfile(): Profile {
     return ProfileService.cache[uniqueId] ?: ProfileService.service.retrieve(uniqueId) ?: Profile(uniqueId)
+}
+
+fun OfflinePlayer.getProfile(): Profile? {
+    return ProfileService.cache[uniqueId] ?: ProfileService.service.retrieve(uniqueId)
 }
