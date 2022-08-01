@@ -20,7 +20,7 @@ object StatsCommand {
         player.sendMessage(translate("&7&m------------------------------"))
         player.sendMessage(translate("&fKills: &d${profile.kills}"))
         player.sendMessage(translate("&fDeaths: &d${profile.deaths}"))
-        player.sendMessage(translate("&fBalance: &d${profile.balance}"))
+        player.sendMessage(translate("&fBalance: &a$${profile.balance}"))
         player.sendMessage(translate("&fKillStreak: &d${profile.killstreak}"))
         player.sendMessage(translate("&fKDR: &d${profile.getKDR()}"))
         player.sendMessage(translate("&7&m------------------------------"))

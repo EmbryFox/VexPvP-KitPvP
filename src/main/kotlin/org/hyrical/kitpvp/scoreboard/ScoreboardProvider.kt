@@ -70,7 +70,7 @@ object ScoreboardProvider {
             scores.add(translate("&5&lPLAYER"))
             scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fKills: &d${profile.kills}"))
             scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fDeaths: &d${profile.deaths}"))
-            scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fBalance: &d${profile.balance}"))
+            scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fBalance: &a$${profile.balance}"))
             scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fKillstreak: &d${profile.killstreak}"))
             if (KothHandler.activeKoth != null){
                 scores.add(translate("&7&b"))
