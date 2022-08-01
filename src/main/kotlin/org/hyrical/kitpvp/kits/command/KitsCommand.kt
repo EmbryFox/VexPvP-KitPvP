@@ -21,14 +21,14 @@ object KitsCommand {
     @JvmStatic
     fun kits(player: Player, @Param("kit", "fid2ieu923t0wi0adjifwjnbdjivfedjnerwjwje") kitName: String) {
         if (kitName != "fid2ieu923t0wi0adjifwjnbdjivfedjnerwjwje"){
-            val kit = KitsService.kits[kitName]
+            val kit = KitsService.kits[kitName.lowercase()]
 
             if (kit == null){
                 player sendMessage "&cThat kit doesn't exist."
                 return
             }
 
-            kitCommand(player, kitName)
+            kitCommand(player, kitName.lowercase())
 
             return
         }
@@ -50,7 +50,7 @@ object KitsCommand {
             if (player.hasPermission(kit.value.permission)) {
                 player sendMessage "&d${kit.value.name.capitalize()} &7- " +
                         if (isOnCooldown(player, kit.value)) "&fCooldown: &d${
-                            TimeUtil.formatIntoMMSS(((profile.kitCooldowns[kit.value.name]!! - System.currentTimeMillis()) / 1000).toInt())}" else "&fNot on cooldown"
+                            TimeUtil.formatIntoMMSS(((profile.kitCooldowns[kit.value.name.lowercase()]!! - System.currentTimeMillis()) / 1000).toInt())}" else "&fNot on cooldown"
             }
         }
         player sendMessage("&7&m---------------------------------")
@@ -59,16 +59,15 @@ object KitsCommand {
     @Command(["kit"], description = "Apply a kit")
     @JvmStatic
     fun kitCommand(player: Player, @Param("kit", "xzadsafaefreasrfaedfaerdfaedaedsadasdassdasdasd") kitName: String) {
-        kitName.lowercase()
         if (kitName == "xzadsafaefreasrfaedfaerdfaedaedsadasdassdasdasd") {
             kits(player, "fid2ieu923t0wi0adjifwjnbdjivfedjnerwjwje")
             return
         }
 
-        val kit = KitsService.kits[kitName]
+        val kit = KitsService.kits[kitName.lowercase()]
 
         if (kit == null) {
-            player sendMessage "&cNo kit with the name ${kitName.capitalize()} found."
+            player sendMessage "&cNo kit with the name $kitName found."
             return
         }
 
@@ -80,9 +79,9 @@ object KitsCommand {
         val playerProfile = player.getProfile()
 
         if (kit.cooldown != "") {
-            if (playerProfile.kitCooldowns[kit.name] != null) {
+            if (playerProfile.kitCooldowns.containsKey(kit.name.lowercase())) {
                 if (isOnCooldown(player, kit)) {
-                    player sendMessage "&cYou are on cooldown for this kit for another &l${TimeUtil.formatIntoDetailedString((((player.getProfile().kitCooldowns[kit.name]!! - System.currentTimeMillis()) / 1000).toInt()))}&c."
+                    player sendMessage "&cYou are on cooldown for this kit for another &l${TimeUtil.formatIntoDetailedString((((player.getProfile().kitCooldowns[kit.name.lowercase()]!! - System.currentTimeMillis()) / 1000).toInt()))}&c."
                     return
                 } else {
                     playerProfile.kitCooldowns.remove(kit.name.lowercase())
@@ -99,10 +98,10 @@ object KitsCommand {
 
         player.inventory.addItem(*kit.items.map { ItemStackSerializer.itemFrom64(it)!! }.toTypedArray())
 
-        player sendMessage "&aYou have applied the kit &f${kit.name.capitalize()}&a."
+        player sendMessage "&aYou have applied the kit &f${kit.name}&a."
 
         if (kit.cooldown != "") {
-            playerProfile.kitCooldowns[kit.name] = System.currentTimeMillis() + TimeUtil.parseTime(kit.cooldown) * 1000
+            playerProfile.kitCooldowns[kit.name.lowercase()] = System.currentTimeMillis() + TimeUtil.parseTime(kit.cooldown) * 1000
             playerProfile.save()
         }
     }
@@ -110,8 +109,7 @@ object KitsCommand {
     @Command(["kit admin create", "kits admin create"], permission = "kitpvp.admin.create")
     @JvmStatic
     fun kitsAdmin(player: Player, @Param("kit") kitName: String) {
-        kitName.lowercase()
-        if (KitsService.kits.containsKey(kitName)) {
+        if (KitsService.kits.containsKey(kitName.lowercase())) {
             player sendMessage "&cThe kit $kitName already exists."
             return
         }
@@ -132,25 +130,24 @@ object KitsCommand {
 
         player sendMessage "&aThat kit has been created."
 
-        val kit = Kit(kitName, items = items)
+        val kit = Kit(kitName.lowercase(), items = items)
 
-        KitsService.kits[kitName] = kit
-        KitsService.handler.storeAsync(kitName, kit)
+        KitsService.kits[kitName.lowercase()] = kit
+        KitsService.handler.storeAsync(kitName.lowercase(), kit)
     }
 
     @Command(["kit admin delete", "kits admin delete"], permission = "kitpvp.admin.delete")
     @JvmStatic
     fun kitsAdminDelete(player: Player, @Param("kit") kitName: String) {
-        kitName.lowercase()
-        if (!KitsService.kits.containsKey(kitName)) {
-            player sendMessage "&cNo kit with the name ${kitName.uppercase()} found."
+        if (!KitsService.kits.containsKey(kitName.lowercase())) {
+            player sendMessage "&cNo kit with the name $kitName found."
             return
         }
 
-        val file = File(KitPvP.instance.dataFolder.absolutePath + "/kit/${kitName}")
+        val file = File(KitPvP.instance.dataFolder.absolutePath + "/kit/${kitName.lowercase()}")
         file.delete()
 
-        KitsService.kits.remove(kitName)
+        KitsService.kits.remove(kitName.lowercase())
 
         player sendMessage "&cThat kit has been deleted."
     }
@@ -158,9 +155,8 @@ object KitsCommand {
     @Command(["kit admin set", "kits admin set"], permission = "kitpvp.admin.set")
     @JvmStatic
     fun kitsAdminSet(player: Player, @Param("kit") kitName: String) {
-        kitName.lowercase()
-        if (!KitsService.kits.containsKey(kitName)) {
-            player sendMessage "&cNo kit with the name ${kitName.uppercase()} found."
+        if (!KitsService.kits.containsKey(kitName.lowercase())) {
+            player sendMessage "&cNo kit with the name $kitName found."
             return
         }
 
@@ -172,13 +168,13 @@ object KitsCommand {
             }
         }
 
-        val kit = KitsService.kits[kitName]!!
+        val kit = KitsService.kits[kitName.lowercase()]!!
 
         kit.items.clear()
         kit.items.addAll(items.map { ItemStackSerializer.itemTo64(it)!! })
 
-        KitsService.kits[kitName] = kit
-        KitsService.handler.storeAsync(kitName, kit)
+        KitsService.kits[kitName.lowercase()] = kit
+        KitsService.handler.storeAsync(kitName.lowercase(), kit)
 
         player sendMessage "&aThe kit's contents have been updated."
     }
@@ -186,18 +182,17 @@ object KitsCommand {
     @Command(["kit admin cooldown", "kits admin cooldown"], permission = "kitpvp.admin.cooldown")
     @JvmStatic
     fun kitsAdminCooldown(player: Player, @Param("kit") kitName: String, @Param("cooldown") cooldown: String) {
-        kitName.lowercase()
-        if (!KitsService.kits.containsKey(kitName)) {
-            player sendMessage "&cNo kit with the name ${kitName.capitalize()} found."
+        if (!KitsService.kits.containsKey(kitName.lowercase())) {
+            player sendMessage "&cNo kit with the name $kitName found."
             return
         }
 
-        val kit = KitsService.kits[kitName]!!
+        val kit = KitsService.kits[kitName.lowercase()]!!
 
         kit.cooldown = cooldown
 
-        KitsService.kits[kitName] = kit
-        KitsService.handler.storeAsync(kitName, kit)
+        KitsService.kits[kitName.lowercase()] = kit
+        KitsService.handler.storeAsync(kitName.lowercase(), kit)
 
         player sendMessage "&aThe kit cooldown has been updated to &l${TimeUtil.formatIntoDetailedString(TimeUtil.parseTime(cooldown))}&a."
     }
@@ -205,8 +200,7 @@ object KitsCommand {
     @Command(["kit admin cooldown reset", "kits admin cooldown reset"], permission = "kitpvp.admin.cooldown.reset")
     @JvmStatic
     fun kitsAdminCooldownReset(player: Player, @Param("kit") kitName: String) {
-        kitName.lowercase()
-        if (!KitsService.kits.containsKey(kitName)) {
+        if (!KitsService.kits.containsKey(kitName.lowercase())) {
             player sendMessage "&cNo kit with the name ${kitName.replaceFirstChar {
                 if (it.isLowerCase()) it.titlecase(
                     Locale.getDefault()
@@ -215,12 +209,12 @@ object KitsCommand {
             return
         }
 
-        val kit = KitsService.kits[kitName]!!
+        val kit = KitsService.kits[kitName.lowercase()]!!
 
         kit.cooldown = ""
 
-        KitsService.kits[kitName] = kit
-        KitsService.handler.storeAsync(kitName, kit)
+        KitsService.kits[kitName.lowercase()] = kit
+        KitsService.handler.storeAsync(kitName.lowercase(), kit)
 
         player sendMessage "&aThe kit cooldown has been reset."
     }

@@ -51,4 +51,3 @@ fun Player.getProfile(): Profile {
 
 fun OfflinePlayer.getProfile(): Profile? {
     return ProfileService.cache[uniqueId] ?: ProfileService.service.retrieve(uniqueId)
-}
