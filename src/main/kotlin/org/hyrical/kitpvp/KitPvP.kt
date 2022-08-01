@@ -41,8 +41,15 @@ import org.hyrical.kitpvp.scoreboard.ScoreboardConfig
 import org.hyrical.kitpvp.scoreboard.ScoreboardProvider
 import org.hyrical.kitpvp.scoreboard.animation.type.LinkAnimation
 import org.hyrical.kitpvp.scoreboard.animation.type.TitleAnimation
+<<<<<<< Updated upstream
 import org.hyrical.kitpvp.spigot.BowBoostListener
 import org.hyrical.kitpvp.vault.Vault
+=======
+import org.hyrical.kitpvp.skydrops.command.SkyDropCommands
+import org.hyrical.kitpvp.skydrops.listener.ChestListener
+import org.hyrical.kitpvp.skydrops.task.SkyDropTask
+import java.util.concurrent.TimeUnit
+>>>>>>> Stashed changes
 import kotlin.random.Random
 
 
@@ -99,6 +106,7 @@ class KitPvP : JavaPlugin() {
         CommandHandler.registerClass(StoreCommand.javaClass)
         CommandHandler.registerClass(GemCommands.javaClass)
         CommandHandler.registerClass(ShopCommand.javaClass)
+        CommandHandler.registerClass(SkyDropCommands.javaClass)
 
         CommandHandler.registerClass(KothCommands.javaClass)
 
@@ -111,9 +119,9 @@ class KitPvP : JavaPlugin() {
         server.pluginManager.registerEvents(CombatTagHandler, this)
         server.pluginManager.registerEvents(GodAppleListener, this)
         server.pluginManager.registerEvents(BountyListener(), this)
-        server.pluginManager.registerEvents(BowBoostListener(), this)
         server.pluginManager.registerEvents(ChatListener(), this)
         server.pluginManager.registerEvents(BowPreventionListener(), this)
+        server.pluginManager.registerEvents(ChestListener(), this)
 
         NameTagProvider.runTaskTimer(this, 0L, 10L)
 
@@ -121,6 +129,7 @@ class KitPvP : JavaPlugin() {
 
         KillLeaderboard.load()
         DeathLeaderboard.load()
+<<<<<<< Updated upstream
         LevelLeaderboard.load()
 
         Bukkit.getServicesManager().register(
@@ -130,6 +139,10 @@ class KitPvP : JavaPlugin() {
             ServicePriority.Normal
         )
 
+=======
+
+        SkyDropTask().runTaskTimer(this, TimeUnit.HOURS.toMillis(3L), TimeUnit.HOURS.toMillis(3L))
+>>>>>>> Stashed changes
     }
 
 

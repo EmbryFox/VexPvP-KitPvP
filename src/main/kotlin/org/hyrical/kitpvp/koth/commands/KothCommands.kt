@@ -33,7 +33,7 @@ object KothCommands {
     @JvmStatic
     fun delete(player: Player, @Param("name") name: String) {
         name.lowercase()
-        if (!KothHandler.koths.containsKey(name)) {
+        if (!KothHandler.koths.containsKey(name.lowercase())) {
             player sendMessage "&cThat KoTH doesn't exist."
             return
         }
@@ -55,7 +55,7 @@ object KothCommands {
             return
         }
 
-        val koth = KothHandler.koths[name] ?: run {
+        val koth = KothHandler.koths[name.lowercase()] ?: run {
             player sendMessage "&cThat KoTH doesn't exist."
             return
         }

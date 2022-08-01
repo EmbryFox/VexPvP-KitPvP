@@ -9,10 +9,7 @@ import org.bukkit.inventory.InventoryView
 import org.bukkit.inventory.ItemStack
 import org.bukkit.potion.Potion
 import org.bukkit.potion.PotionType
-import org.hyrical.kitpvp.commands.shop.menu.menus.ArmorMenu
-import org.hyrical.kitpvp.commands.shop.menu.menus.MiscMenu
-import org.hyrical.kitpvp.commands.shop.menu.menus.PotionMenu
-import org.hyrical.kitpvp.commands.shop.menu.menus.WeaponsMenu
+import org.hyrical.kitpvp.commands.shop.menu.menus.*
 import org.hyrical.kitpvp.sendMessage
 import org.hyrical.kitpvp.translate
 
@@ -94,7 +91,7 @@ class EnchantmentButton : Button() {
     }
 
     override fun clicked(player: Player, slot: Int, clickType: ClickType, view: InventoryView) {
-        player sendMessage "&cThis feature is coming soon."
+        EnchantmentMenu().openMenu(player)
     }
 
 }
