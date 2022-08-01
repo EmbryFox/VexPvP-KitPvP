@@ -42,6 +42,7 @@ object BountyCommand {
 
         if (amount < KitPvP.instance.config.getInt("bounty-min")){
             player sendMessage "&cYou are required to put at least $${KitPvP.instance.config.getInt("bounty-min")}."
+            return
         }
 
         targetProfile.bounty = amount

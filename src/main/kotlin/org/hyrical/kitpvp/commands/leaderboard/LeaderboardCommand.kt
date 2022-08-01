@@ -6,6 +6,7 @@ import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.hyrical.kitpvp.leaderboard.DeathLeaderboard
 import org.hyrical.kitpvp.leaderboard.KillLeaderboard
+import org.hyrical.kitpvp.leaderboard.LevelLeaderboard
 import org.hyrical.kitpvp.sendMessage
 import org.hyrical.kitpvp.translate
 
@@ -38,6 +39,15 @@ object LeaderboardCommand {
 
                 i++
             }
+        } else if (type == LeaderboardType.LEVELS) {
+            for (entry in LevelLeaderboard.getLeaderboards()){
+                if (Bukkit.getOfflinePlayer(entry.key) == null) continue
+                if (i == 11) continue
+
+                player sendMessage (if (i == 1) "&51." else "&7$i.") + " &d${Bukkit.getOfflinePlayer(entry.key).name} &7- &f${entry.value}"
+
+                i++
+            }
         }
 
 
@@ -49,6 +59,6 @@ object LeaderboardCommand {
 enum class LeaderboardType(val nameFirst: String, val aliases: Array<String>) {
     KILLS("Kills", arrayOf("k")),
     DEATHS("Deaths", arrayOf("d")),
-    KDR("KD", arrayOf("kdr"))
+    LEVELS("Levels", arrayOf("level"))
 
 }

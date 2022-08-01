@@ -7,7 +7,7 @@ import org.hyrical.kitpvp.commands.leaderboard.LeaderboardType
 
 class LeaderboardTypeParam : ParameterType<LeaderboardType> {
     override fun tabComplete(player: Player, flags: Set<String>, source: String): List<String> {
-        return listOf("Kills", "Deaths", "KD")
+        return listOf("Kills", "Deaths", "Level")
     }
 
     override fun transform(sender: CommandSender, source: String): LeaderboardType? {
@@ -15,8 +15,8 @@ class LeaderboardTypeParam : ParameterType<LeaderboardType> {
             return LeaderboardType.KILLS
         } else if (source.lowercase() == LeaderboardType.DEATHS.nameFirst.lowercase()) {
             return LeaderboardType.DEATHS
-        } else if (source.lowercase() == LeaderboardType.KDR.nameFirst.lowercase()) {
-            return LeaderboardType.KDR
+        } else if (source.lowercase() == LeaderboardType.LEVELS.nameFirst.lowercase()) {
+            return LeaderboardType.LEVELS
         }
         return LeaderboardType.KILLS
     }

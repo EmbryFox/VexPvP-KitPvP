@@ -22,7 +22,7 @@ class KillstreakListener : Listener {
 
         val profile = event.entity.killer.getProfile()
 
-        val newBal = KitPvP.random.nextInt(5, 10)
+        val newBal = KitPvP.random.nextInt(7, 20)
         val level = profile.getLevel()
 
         event.entity.killer sendMessage "You received &d$$newBal &ffor killing &5${event.entity.name}&f."
