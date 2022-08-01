@@ -8,7 +8,7 @@ import org.hyrical.kitpvp.sendMessage
 
 object GemCommands {
 
-    @Command(["gem", "gems"], description = "Displays the amount of gems you have.")
+    @Command(["gem", "gems"], description = "Displays the amount of gems you have.", permission = "kitpvp.buycraft.gem")
     @JvmStatic
     fun gems(player: Player) {
         player sendMessage "&7Gems &f➥ &a${player.getProfile().gems}"

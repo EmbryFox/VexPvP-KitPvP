@@ -35,7 +35,7 @@ object BountyCommand {
             return
         }
 
-        if (amount < profile.balance){
+        if (amount > profile.balance){
             player sendMessage "&cYou don't have enough money to put a bounty on this player!"
             return
         }
