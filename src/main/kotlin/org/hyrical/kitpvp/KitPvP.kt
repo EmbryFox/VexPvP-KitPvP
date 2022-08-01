@@ -41,15 +41,11 @@ import org.hyrical.kitpvp.scoreboard.ScoreboardConfig
 import org.hyrical.kitpvp.scoreboard.ScoreboardProvider
 import org.hyrical.kitpvp.scoreboard.animation.type.LinkAnimation
 import org.hyrical.kitpvp.scoreboard.animation.type.TitleAnimation
-<<<<<<< Updated upstream
-import org.hyrical.kitpvp.spigot.BowBoostListener
 import org.hyrical.kitpvp.vault.Vault
-=======
 import org.hyrical.kitpvp.skydrops.command.SkyDropCommands
 import org.hyrical.kitpvp.skydrops.listener.ChestListener
 import org.hyrical.kitpvp.skydrops.task.SkyDropTask
 import java.util.concurrent.TimeUnit
->>>>>>> Stashed changes
 import kotlin.random.Random
 
 
@@ -129,7 +125,6 @@ class KitPvP : JavaPlugin() {
 
         KillLeaderboard.load()
         DeathLeaderboard.load()
-<<<<<<< Updated upstream
         LevelLeaderboard.load()
 
         Bukkit.getServicesManager().register(
@@ -139,10 +134,8 @@ class KitPvP : JavaPlugin() {
             ServicePriority.Normal
         )
 
-=======
 
         SkyDropTask().runTaskTimer(this, TimeUnit.HOURS.toMillis(3L), TimeUnit.HOURS.toMillis(3L))
->>>>>>> Stashed changes
     }
 
 

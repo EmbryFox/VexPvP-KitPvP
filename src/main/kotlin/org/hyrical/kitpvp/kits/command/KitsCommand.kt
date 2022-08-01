@@ -50,7 +50,7 @@ object KitsCommand {
             if (player.hasPermission(kit.value.permission)) {
                 player sendMessage "&d${kit.value.name.capitalize()} &7- " +
                         if (isOnCooldown(player, kit.value)) "&fCooldown: &d${
-                            TimeUtil.formatIntoMMSS(((profile.kitCooldowns[kit.value.name]!! - System.currentTimeMillis()) / 1000).toInt())}" else "&fNot on cooldown"
+                            TimeUtil.formatIntoMMSS(((profile.kitCooldowns[kit.value.name.lowercase()]!! - System.currentTimeMillis()) / 1000).toInt())}" else "&fNot on cooldown"
             }
         }
         player sendMessage("&7&m---------------------------------")

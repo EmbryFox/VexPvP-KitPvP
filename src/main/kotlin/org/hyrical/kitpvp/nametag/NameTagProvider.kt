@@ -27,7 +27,6 @@ object NameTagProvider : BukkitRunnable() {
 
         val profile = player.getProfile()
         val aProfile = AquaCoreAPI.INSTANCE.getPlayerData(player.uniqueId)
-        val health = player.health.roundToInt()
 
         if (aProfile.isInStaffMode) {
             lines.add(translate("&7[ModMode]"))
@@ -40,9 +39,6 @@ object NameTagProvider : BukkitRunnable() {
 
         lines.add(translate(if (aProfile.isVanished) "&7&o* " + aProfile.highestRank.color + player.name else aProfile.highestRank.color.toString() + player.name))
 
-        if (!aProfile.isInStaffMode) {
-            lines.add(translate( "${player.health.roundToInt()}" + " &c❤"))
-        }
         return lines
     }
 }
