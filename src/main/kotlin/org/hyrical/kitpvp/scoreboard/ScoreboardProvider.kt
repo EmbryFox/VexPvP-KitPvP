@@ -13,6 +13,7 @@ import org.hyrical.kitpvp.profiles.getProfile
 import org.hyrical.kitpvp.scoreboard.animation.type.LinkAnimation
 import org.hyrical.kitpvp.scoreboard.animation.type.TitleAnimation
 import org.hyrical.kitpvp.translate
+import java.text.NumberFormat
 import java.time.Instant
 import java.util.*
 
@@ -70,7 +71,7 @@ object ScoreboardProvider {
             scores.add(translate("&5&lPLAYER"))
             scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fKills: &d${profile.kills}"))
             scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fDeaths: &d${profile.deaths}"))
-            scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fBalance: &a$${profile.balance}"))
+            scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fBalance: &a$${NumberFormat.getInstance(Locale.US).format(profile.balance)}"))
             scores.add(translate(" &7" + Constants.DOT_SYMBOL + " &fKillstreak: &d${profile.killstreak}"))
             if (KothHandler.activeKoth != null){
                 scores.add(translate("&7&b"))

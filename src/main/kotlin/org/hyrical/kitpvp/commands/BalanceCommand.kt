@@ -6,6 +6,8 @@ import org.bukkit.entity.Player
 import org.hyrical.kitpvp.getColoredName
 import org.hyrical.kitpvp.profiles.getProfile
 import org.hyrical.kitpvp.sendMessage
+import java.text.NumberFormat
+import java.util.*
 
 object BalanceCommand {
 
@@ -14,7 +16,7 @@ object BalanceCommand {
     fun balance(player: Player, @Param("target", defaultValue = "self") target: Player){
         val profile = target.getProfile()
 
-        player sendMessage "&5${target.name}&f's balance: &d${profile.balance}"
+        player sendMessage "&d${target.name}&f's balance: &a$${NumberFormat.getInstance(Locale.US).format(profile.balance)}"
     }
 
     @Command(["setbal", "setbalance"], "kitpvp.setbal")
