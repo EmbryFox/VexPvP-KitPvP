@@ -21,14 +21,14 @@ object KitsCommand {
     @JvmStatic
     fun kits(player: Player, @Param("kit", "fid2ieu923t0wi0adjifwjnbdjivfedjnerwjwje") kitName: String) {
         if (kitName != "fid2ieu923t0wi0adjifwjnbdjivfedjnerwjwje"){
-            val kit = KitsService.kits[kitName]
+            val kit = KitsService.kits[kitName.lowercase()]
 
             if (kit == null){
                 player sendMessage "&cThat kit doesn't exist."
                 return
             }
 
-            kitCommand(player, kitName)
+            kitCommand(player, kitName.lowercase())
 
             return
         }
@@ -140,7 +140,7 @@ object KitsCommand {
     @JvmStatic
     fun kitsAdminDelete(player: Player, @Param("kit") kitName: String) {
         if (!KitsService.kits.containsKey(kitName.lowercase())) {
-            player sendMessage "&cNo kit with the name ${kitName} found."
+            player sendMessage "&cNo kit with the name $kitName found."
             return
         }
 
