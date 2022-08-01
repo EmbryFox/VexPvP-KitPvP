@@ -80,8 +80,8 @@ class KillstreakListener : Listener {
     private fun generateMessage(player: Player, killstreak: Int){
         val profile = player.getProfile()
 
-        profile.balance = killstreak * 5.0
-        profile.bounty = profile.bounty + 20
+        profile.balance += killstreak * 5.0
+        profile.bounty += 20
         profile.save()
 
         Bukkit.broadcastMessage(translate("&7[&d" + Constants.EXP_SYMBOL + "&7] &5${player.name} " +
