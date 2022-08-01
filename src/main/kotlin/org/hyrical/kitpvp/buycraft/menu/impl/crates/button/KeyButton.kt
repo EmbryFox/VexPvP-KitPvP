@@ -8,7 +8,6 @@ import org.bukkit.event.inventory.ClickType
 import org.bukkit.inventory.InventoryView
 import org.hyrical.kitpvp.buycraft.menu.confirm.ConfirmMenu
 import org.hyrical.kitpvp.translate
-import java.util.StringJoiner
 
 
 class KeyButton(private val name: String, private val description: List<String>, val command: String, val amountPer: Int): Button() {

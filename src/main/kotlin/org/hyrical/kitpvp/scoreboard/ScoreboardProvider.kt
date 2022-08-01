@@ -1,15 +1,10 @@
 package org.hyrical.kitpvp.scoreboard
 
-import me.activated.core.plugin.AquaCoreAPI
 import net.evilblock.cubed.scoreboard.ScoreGetter
-import net.evilblock.cubed.scoreboard.ScoreboardHandler
 import net.evilblock.cubed.scoreboard.TitleGetter
 import net.evilblock.cubed.util.bukkit.Constants
 import net.evilblock.cubed.util.time.TimeUtil
-import org.bukkit.Bukkit
 import org.bukkit.entity.Player
-import org.hyrical.kitpvp.KitPvP
-import org.hyrical.kitpvp.combat.CombatTagHandler
 import org.hyrical.kitpvp.combat.getCombatTagFormatted
 import org.hyrical.kitpvp.combat.isCombatTagged
 import org.hyrical.kitpvp.koth.storage.KothHandler

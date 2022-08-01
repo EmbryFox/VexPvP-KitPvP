@@ -26,9 +26,9 @@ class ChatListener : Listener {
         val nameColored = AquaCoreAPI.INSTANCE.getPlayerNameColor(player.uniqueId)
 
         if (tagPrefix == "") {
-            event.format = translate("&7[&5${profile.getLevel()}&7] $rankPrefix $nameColored${player.name}&7: &f%2\$s")
+            event.format = translate("&7[&5${profile.getLevel()}&7] $rankPrefix$nameColored${player.name}&7: &f%2\$s")
         } else {
-            event.format = translate("&7[&5${profile.getLevel()}&7] $rankPrefix $tagPrefix $nameColored${player.name}&7: &f%2\$s")
+            event.format = translate("&7[&5${profile.getLevel()}&7] $rankPrefix$tagPrefix $nameColored${player.name}&7: &f%2\$s")
         }
     }
 }

@@ -7,7 +7,6 @@ import org.bukkit.event.entity.PlayerDeathEvent
 import org.hyrical.kitpvp.profiles.canSeeKillMessages
 import org.hyrical.kitpvp.profiles.getProfile
 import org.hyrical.kitpvp.translate
-import java.util.StringJoiner
 
 class DeathMessageListener : Listener {
 

@@ -14,8 +14,6 @@ import org.hyrical.kitpvp.sendMessage
 import org.hyrical.kitpvp.translate
 import java.io.File
 import java.util.*
-import kotlin.time.Duration
-import kotlin.time.ExperimentalTime
 
 object KitsCommand {
 

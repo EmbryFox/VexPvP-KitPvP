@@ -12,7 +12,6 @@ import org.hyrical.kitpvp.profiles.Profile
 import org.hyrical.kitpvp.profiles.getProfile
 import org.hyrical.kitpvp.sendMessage
 import org.hyrical.kitpvp.translate
-import java.util.Random
 
 class KillstreakListener : Listener {
 

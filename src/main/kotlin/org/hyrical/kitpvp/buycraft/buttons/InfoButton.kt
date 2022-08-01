@@ -8,7 +8,6 @@ import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType
 import org.hyrical.kitpvp.profiles.getProfile
 import org.hyrical.kitpvp.translate
-import java.util.StringJoiner
 
 class InfoButton : Button() {
 

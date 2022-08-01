@@ -7,7 +7,6 @@ import net.evilblock.cubed.menu.buttons.GlassButton
 import net.evilblock.cubed.util.bukkit.ColorUtil
 import net.evilblock.cubed.util.bukkit.Tasks
 import org.bukkit.ChatColor
-import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.hyrical.kitpvp.buycraft.MainBuycraftMenu
 import org.hyrical.kitpvp.buycraft.buttons.InfoButton

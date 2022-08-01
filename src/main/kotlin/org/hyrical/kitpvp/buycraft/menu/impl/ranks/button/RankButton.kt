@@ -8,9 +8,7 @@ import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.ClickType
 import org.bukkit.inventory.InventoryView
-import org.hyrical.kitpvp.buycraft.menu.confirm.ConfirmMenu
 import org.hyrical.kitpvp.buycraft.menu.confirm.ConfirmMenuWithoutQuantity
-import org.hyrical.kitpvp.sendMessage
 import org.hyrical.kitpvp.translate
 
 class RankButton(private val name: String, private val description: List<String>, val command: String, val price: Int, val color: ChatColor) : Button() {
