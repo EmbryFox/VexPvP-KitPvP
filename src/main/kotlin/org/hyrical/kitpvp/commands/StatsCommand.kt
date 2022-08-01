@@ -7,6 +7,8 @@ import org.hyrical.kitpvp.getColoredName
 import org.hyrical.kitpvp.profiles.getProfile
 import org.hyrical.kitpvp.sendMessage
 import org.hyrical.kitpvp.translate
+import java.text.NumberFormat
+import java.util.*
 
 object StatsCommand {
 
@@ -20,7 +22,7 @@ object StatsCommand {
         player.sendMessage(translate("&7&m------------------------------"))
         player.sendMessage(translate("&fKills: &d${profile.kills}"))
         player.sendMessage(translate("&fDeaths: &d${profile.deaths}"))
-        player.sendMessage(translate("&fBalance: &a$${profile.balance}"))
+        player.sendMessage(translate("&fBalance: &a$${NumberFormat.getInstance(Locale.US).format(profile.balance)}"))
         player.sendMessage(translate("&fKillStreak: &d${profile.killstreak}"))
         player.sendMessage(translate("&fKDR: &d${profile.getKDR()}"))
         player.sendMessage(translate("&7&m------------------------------"))

@@ -15,8 +15,6 @@ import org.bukkit.event.inventory.InventoryOpenEvent
 import org.bukkit.scheduler.BukkitRunnable
 import org.hyrical.kitpvp.KitPvP
 import org.hyrical.kitpvp.translate
-import org.hyrical.kitpvp.utils.ProgressBarBuilder
-import util.nms.ActionBarUtil
 import java.awt.Color
 
 class ChestListener : Listener {

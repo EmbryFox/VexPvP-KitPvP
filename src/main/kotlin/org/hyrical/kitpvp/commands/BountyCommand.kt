@@ -26,7 +26,7 @@ object BountyCommand {
         }
 
         if (targetProfile.bounty != 0.0){
-            player sendMessage "&cThat player already has a bounty active."
+            player sendMessage "&cThat player already has a bounty."
             return
         }
 
