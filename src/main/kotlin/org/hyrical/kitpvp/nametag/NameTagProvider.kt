@@ -3,6 +3,7 @@ package org.hyrical.kitpvp.nametag
 import com.lunarclient.bukkitapi.LunarClientAPI
 import me.activated.core.plugin.AquaCoreAPI
 import org.bukkit.Bukkit
+import org.bukkit.GameMode
 import org.bukkit.entity.Player
 import org.bukkit.scheduler.BukkitRunnable
 import org.hyrical.kitpvp.profiles.getProfile
@@ -33,12 +34,18 @@ object NameTagProvider : BukkitRunnable() {
         }
 
         if (profile.bounty != 0.0){
-            lines.add(translate(if (!aProfile.isInStaffMode) "&6Bounty: &a$${NumberFormat.getInstance(Locale.US)
+            lines.add(translate(if (!aProfile.isInStaffMode || player.gameMode != GameMode.CREATIVE) "&6Bounty: &a$${NumberFormat.getInstance(Locale.US)
                 .format(profile.bounty)}" else return lines))
         }
 
         lines.add(translate(if (aProfile.isVanished) "&7&o*$player.name" else "$aProfile.highestRank.color$player.name"))
 
+<<<<<<< Updated upstream
+=======
+        if (!aProfile.isInStaffMode || player.gameMode != GameMode.CREATIVE) {
+            lines.add(translate( "${player.health.roundToInt()} &c❤"))
+        }
+>>>>>>> Stashed changes
         return lines
     }
 }

@@ -119,7 +119,7 @@ class KitPvP : JavaPlugin() {
         server.pluginManager.registerEvents(BowPreventionListener(), this)
         server.pluginManager.registerEvents(ChestListener(), this)
 
-        NameTagProvider.runTaskTimer(this, 0L, 10L)
+        NameTagProvider.runTaskTimerAsynchronously(this, 0L, 10L)
 
         Announcer.load(config)
 

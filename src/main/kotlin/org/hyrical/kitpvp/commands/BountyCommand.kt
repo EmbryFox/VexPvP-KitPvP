@@ -25,6 +25,7 @@ object BountyCommand {
             return
         }
 
+<<<<<<< Updated upstream
         if (targetProfile.bounty != 0.0){
             targetProfile.bounty += amount
             Bukkit.broadcastMessage(translate("&7[&d" + Constants.EXP_SYMBOL + "&7] " +
@@ -32,6 +33,8 @@ object BountyCommand {
             return
         }
 
+=======
+>>>>>>> Stashed changes
         if (amount.isNaN() || amount < 0){
             player sendMessage "&cThat number is invalid."
             return
