@@ -31,6 +31,7 @@ import org.hyrical.kitpvp.koth.koth.listener.BowPreventionListener
 import org.hyrical.kitpvp.koth.storage.KothHandler
 import org.hyrical.kitpvp.leaderboard.DeathLeaderboard
 import org.hyrical.kitpvp.leaderboard.KillLeaderboard
+import org.hyrical.kitpvp.leaderboard.LevelLeaderboard
 import org.hyrical.kitpvp.listeners.*
 import org.hyrical.kitpvp.mongo.MongoURIConnection
 import org.hyrical.kitpvp.nametag.NameTagProvider
@@ -120,6 +121,7 @@ class KitPvP : JavaPlugin() {
 
         KillLeaderboard.load()
         DeathLeaderboard.load()
+        LevelLeaderboard.load()
 
         Bukkit.getServicesManager().register(
             Economy::class.java,
