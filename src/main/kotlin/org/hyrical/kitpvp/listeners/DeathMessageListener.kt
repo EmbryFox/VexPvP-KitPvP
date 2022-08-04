@@ -16,7 +16,7 @@ class DeathMessageListener : Listener {
 
         val profile = event.entity.getProfile()
 
-        // Testing Jetbrains Space :)
+        // Testing Jetbrains Space :) again
 
         profile.deaths++
         profile.killstreak = 0
