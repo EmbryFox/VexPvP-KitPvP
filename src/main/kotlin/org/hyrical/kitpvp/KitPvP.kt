@@ -69,8 +69,6 @@ class KitPvP : JavaPlugin() {
             databaseName = "VexKits"
         }
         
-        // Testing space
-
         dataHandler = DataHandler
             .linkTypeToId<Koth>("koth")
             .linkTypeToId<Kit>("kits")
