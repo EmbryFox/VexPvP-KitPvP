@@ -18,7 +18,7 @@ class HookAbility : AbstractAbility() {
     }
 
     override fun getItem(): ItemStack {
-        return ItemBuilder.of(Material.FISHING_ROD).name("&eHook").build()
+        return ItemBuilder.of(Material.FISHING_ROD).name("&dHook").build()
     }
 
     override fun getCooldown(): Long {
@@ -44,7 +44,7 @@ class HookAbility : AbstractAbility() {
                 return
             }
 
-            val nearby: List<Entity> = damager.getNearbyEntities(20.0, 20.0, 20.0)
+            val nearby: List<Entity> = damager.getNearbyEntities(7.0, 7.0, 7.0)
             for (near in nearby) {
                 if (near is Player) {
                     val direction: Vector = near.getLocation().toVector().subtract(damager.location.toVector()).normalize()

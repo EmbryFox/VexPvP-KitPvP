@@ -39,6 +39,7 @@ abstract class AbstractAbility : Listener {
                     return
                 }
                 onRightClick(event.player)
+
                 event.isCancelled = true
                 cooldowns[event.player.uniqueId] = System.currentTimeMillis()
             }
@@ -48,6 +49,6 @@ abstract class AbstractAbility : Listener {
     fun isOnCooldown(player: Player): Boolean {
         if (!cooldowns.containsKey(player.uniqueId)) return false
 
-        return cooldowns[player.uniqueId]!! + getCooldown() > System.currentTimeMillis()
+        return cooldowns[player.uniqueId]!! > System.currentTimeMillis()
     }
 }

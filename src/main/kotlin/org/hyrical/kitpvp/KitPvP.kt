@@ -15,6 +15,8 @@ import org.bukkit.plugin.ServicePriority
 import org.bukkit.plugin.java.JavaPlugin
 import org.hyrical.kitpvp.abilities.AbilityHandler
 import org.hyrical.kitpvp.abilities.commands.AbilitiesCommand
+import org.hyrical.kitpvp.abilities.impl.DoubleJumpAbility
+import org.hyrical.kitpvp.abilities.impl.HookAbility
 import org.hyrical.kitpvp.announcer.Announcer
 import org.hyrical.kitpvp.buycraft.command.GemCommands
 import org.hyrical.kitpvp.buycraft.command.StoreCommand
@@ -142,6 +144,8 @@ class KitPvP : JavaPlugin() {
             ServicePriority.Lowest
         )
 
+        HookAbility()
+        DoubleJumpAbility()
 
         SkyDropTask().runTaskTimer(this, TimeUnit.HOURS.toMillis(3L), TimeUnit.HOURS.toMillis(3L))
     }
