@@ -36,6 +36,7 @@ import org.hyrical.kitpvp.listeners.*
 import org.hyrical.kitpvp.mongo.MongoURIConnection
 import org.hyrical.kitpvp.nametag.NameTagProvider
 import org.hyrical.kitpvp.profiles.ProfileService
+import org.hyrical.kitpvp.profiles.getProfile
 import org.hyrical.kitpvp.profiles.listener.ProfileListener
 import org.hyrical.kitpvp.scoreboard.ScoreboardConfig
 import org.hyrical.kitpvp.scoreboard.ScoreboardProvider
@@ -138,6 +139,14 @@ class KitPvP : JavaPlugin() {
         SkyDropTask().runTaskTimer(this, TimeUnit.HOURS.toMillis(3L), TimeUnit.HOURS.toMillis(3L))
     }
 
+
+    override fun onDisable() {
+        for (player : Player in Bukkit.getServer().onlinePlayers) {
+            val profile = player.getProfile()
+            profile.save()
+        }
+        saveConfig()
+    }
 
 }
 

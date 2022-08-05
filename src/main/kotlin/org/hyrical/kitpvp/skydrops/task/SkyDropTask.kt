@@ -15,10 +15,12 @@ class SkyDropTask : BukkitRunnable() {
 
         val location = SkyDropHandler.currentSkyDropLocation!!
 
+        Bukkit.broadcastMessage(" ")
         Bukkit.broadcastMessage(
             translate("&7[&5${Constants.EXP_SYMBOL}&7] &fA &dSky Drop " +
                     "&fhas spawned at &d${location.x}&7, &d${location.z}&f!")
         )
+        Bukkit.broadcastMessage(" ")
 
         Bukkit.getOnlinePlayers().forEach {
             LunarClientAPI.getInstance().sendWaypoint(it,

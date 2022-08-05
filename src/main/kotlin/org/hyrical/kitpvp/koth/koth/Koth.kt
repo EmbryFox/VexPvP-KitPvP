@@ -39,10 +39,12 @@ class Koth(
             player.playSound(player.location, Sound.ENDERDRAGON_HIT, 2.0f, 2.0f)
         }
 
+        Bukkit.broadcastMessage(" ")
         Bukkit.broadcastMessage(translate("&7&m---------------------------"))
         Bukkit.broadcastMessage(translate("&5${name.capitalize()} &fhas started!"))
         Bukkit.broadcastMessage(translate("&fCoordinates: &d${round(LocationSerializer.itemFrom64(location)?.x!!)}&7, &d${round(LocationSerializer.itemFrom64(location)?.z!!)}"))
         Bukkit.broadcastMessage(translate("&7&m---------------------------"))
+        Bukkit.broadcastMessage(" ")
     }
 
     override fun tick() {

@@ -34,11 +34,9 @@ object NameTagProvider : BukkitRunnable() {
         }
 
         if (profile.bounty != 0.0){
-            lines.add(translate(if (!aProfile.isInStaffMode || player.gameMode != GameMode.CREATIVE) "&fBounty: &d$${NumberFormat.getInstance(Locale.US)
-                .format(profile.bounty)}" else return lines))
-        }
+            lines.add(translate(if (!aProfile.isInStaffMode || player.gameMode != GameMode.CREATIVE) "&eBounty: &a$${NumberFormat.getInstance(Locale.US).format(profile.bounty)}" else return lines)) }
 
-        lines.add(translate(if (aProfile.isVanished) "&7&o*${player.name}" else "${aProfile.highestRank.color}${player.name}"))
+        lines.add(translate(if (aProfile.isVanished) "&7&o*${player.name}" else "${aProfile.highestRank.color} ${player.name}"))
         
         return lines
     }
