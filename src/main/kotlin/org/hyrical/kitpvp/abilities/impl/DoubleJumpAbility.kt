@@ -23,6 +23,6 @@ class DoubleJumpAbility : AbstractAbility() {
     }
 
     override fun onRightClick(player: Player) {
-        player.velocity = player.location.direction.multiply(1.5).setY(1)
+        player.velocity = player.location.direction.multiply(2).setY(1)
     }
 }

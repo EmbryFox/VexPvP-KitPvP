@@ -51,8 +51,6 @@ class HookAbility : AbstractAbility() {
                     near.setVelocity(direction)
                 }
             }
-
-            cooldowns[damager.uniqueId] = System.currentTimeMillis()
         }
     }
 }

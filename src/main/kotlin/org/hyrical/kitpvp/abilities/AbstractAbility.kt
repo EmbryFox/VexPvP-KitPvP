@@ -17,7 +17,7 @@ abstract class AbstractAbility : Listener {
     val cooldowns: HashMap<UUID, Long> = hashMapOf()
 
     init {
-        Bukkit.getServer().pluginManager.registerEvents(this, KitPvP())
+        Bukkit.getServer().pluginManager.registerEvents(this, KitPvP.instance)
     }
 
     abstract fun getIdentifier(): String
@@ -31,12 +31,15 @@ abstract class AbstractAbility : Listener {
     @EventHandler
     fun onRightClickEvent(event: PlayerInteractEvent) {
         if ((event.action == Action.RIGHT_CLICK_AIR) || (event.action == Action.RIGHT_CLICK_BLOCK)) {
-            if (event.item == getItem()) {
+            if (event.item == null) return
+
+            if (event.item.isSimilar(getItem())) {
                 if (isOnCooldown(event.player)) {
                     event.player sendMessage "&cYou cannot use this for another &l${TimeUtil.formatIntoDetailedString((((cooldowns[event.player.uniqueId]!! + getCooldown()) - System.currentTimeMillis()) / 1000).toInt())}&c."
                     return
                 }
                 onRightClick(event.player)
+                event.isCancelled = true
                 cooldowns[event.player.uniqueId] = System.currentTimeMillis()
             }
         }
