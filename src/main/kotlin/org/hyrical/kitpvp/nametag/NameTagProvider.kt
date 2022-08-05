@@ -35,7 +35,7 @@ object NameTagProvider : BukkitRunnable() {
 
         if (profile.bounty != 0.0) {
             if (!aProfile.isInStaffMode || player.gameMode != GameMode.CREATIVE) {
-                lines.add(translate( "&fBounty: &d$${NumberFormat.getInstance(Locale.US)
+                lines.add(translate( "&eBounty: &a$${NumberFormat.getInstance(Locale.US)
                     .format(profile.bounty)}"))
             }
         }
