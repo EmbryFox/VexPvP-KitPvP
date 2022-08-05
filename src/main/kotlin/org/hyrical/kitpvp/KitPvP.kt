@@ -144,18 +144,11 @@ class KitPvP : JavaPlugin() {
             ServicePriority.Lowest
         )
 
-        HookAbility()
-        DoubleJumpAbility()
-
         SkyDropTask().runTaskTimer(this, TimeUnit.HOURS.toMillis(3L), TimeUnit.HOURS.toMillis(3L))
     }
 
 
     override fun onDisable() {
-        for (player : Player in Bukkit.getServer().onlinePlayers) {
-            val profile = player.getProfile()
-            profile.save()
-        }
         saveConfig()
     }
 
