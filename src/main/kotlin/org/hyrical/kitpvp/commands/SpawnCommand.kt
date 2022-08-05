@@ -16,7 +16,7 @@ object SpawnCommand {
     @JvmStatic
     fun spawn(player: Player) {
         if (player.gameMode == GameMode.CREATIVE){
-            player.teleport(Location(Bukkit.getWorld("world"), 0.5, 111.0, 8.5))
+            player.teleport(Location(Bukkit.getWorld("world"), 0.5, 111.0, -7.5))
 
             return
         }
@@ -52,7 +52,7 @@ object SpawnCommand {
                 if (i <= 0){
                     player sendMessage "&aYou have been successfully teleported to spawn."
 
-                    player.teleport(Location(Bukkit.getWorld("world"), 0.0, 111.0, 8.0))
+                    player.teleport(Location(Bukkit.getWorld("world"), 0.5, 111.0, -7.5))
 
                     cancel()
                     return

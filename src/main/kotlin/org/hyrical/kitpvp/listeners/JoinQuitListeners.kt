@@ -18,7 +18,7 @@ class JoinQuitListeners : Listener {
         Bukkit.broadcastMessage(translate("&8[&a+&8] &r${AquaCoreAPI.INSTANCE.getPlayerData(event.player.uniqueId).nameColor}${event.player.name}"))
         if (event.player.hasPlayedBefore()) return
 
-        event.player.teleport(Location(Bukkit.getWorld("world"), 0.5, 111.0, 8.5))
+        event.player.teleport(Location(Bukkit.getWorld("world"), 0.5, 111.0, -7.5))
         KitPvP.instance.config.set("joins", KitPvP.instance.config.getInt("joins") + 1)
     }
 
