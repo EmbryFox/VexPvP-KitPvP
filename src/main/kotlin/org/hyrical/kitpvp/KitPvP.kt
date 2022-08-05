@@ -68,7 +68,7 @@ class KitPvP : JavaPlugin() {
             mongoURI = "mongodb+srv://Nopox:Ln06dNzjDL4j07bZ@cluster0.sftonqr.mongodb.net/?retryWrites=true&w=majority"
             databaseName = "VexKits"
         }
-        
+
         dataHandler = DataHandler
             .linkTypeToId<Koth>("koth")
             .linkTypeToId<Kit>("kits")
