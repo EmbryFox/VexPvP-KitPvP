@@ -107,6 +107,7 @@ class KitPvP : JavaPlugin() {
         CommandHandler.registerClass(ShopCommand.javaClass)
         CommandHandler.registerClass(SkyDropCommands.javaClass)
         CommandHandler.registerClass(AbilitiesCommand.javaClass)
+        CommandHandler.registerClass(TrashCommand.javaClass)
 
         CommandHandler.registerClass(KothCommands.javaClass)
 
