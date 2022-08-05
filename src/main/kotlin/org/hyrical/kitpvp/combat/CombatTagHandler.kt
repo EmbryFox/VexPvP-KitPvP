@@ -16,7 +16,7 @@ object CombatTagHandler : Listener {
 
     val combatTags: MutableMap<UUID, Long> = mutableMapOf()
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     fun onCombatTag(event: EntityDamageByEntityEvent) {
         if (event.entity !is Player || event.damager !is Player) return
 
