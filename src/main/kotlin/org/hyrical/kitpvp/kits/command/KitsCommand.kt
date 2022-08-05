@@ -9,6 +9,7 @@ import org.hyrical.kitpvp.KitPvP
 import org.hyrical.kitpvp.kits.Kit
 import org.hyrical.kitpvp.kits.KitsService
 import org.hyrical.kitpvp.kits.serializer.ItemStackSerializer
+import org.hyrical.kitpvp.profiles.ProfileService
 import org.hyrical.kitpvp.profiles.getProfile
 import org.hyrical.kitpvp.sendMessage
 import org.hyrical.kitpvp.translate
@@ -197,7 +198,7 @@ object KitsCommand {
         player sendMessage "&aThe kit cooldown has been updated to &l${TimeUtil.formatIntoDetailedString(TimeUtil.parseTime(cooldown))}&a."
     }
 
-    @Command(["kit admin cooldown reset", "kits admin cooldown reset"], permission = "kitpvp.admin.cooldown.reset")
+    @Command(["kit admin cooldown remove", "kits admin cooldown remove"], permission = "kitpvp.admin.cooldown.remove")
     @JvmStatic
     fun kitsAdminCooldownReset(player: Player, @Param("kit") kitName: String) {
         if (!KitsService.kits.containsKey(kitName.lowercase())) {
@@ -217,6 +218,34 @@ object KitsCommand {
         KitsService.handler.storeAsync(kitName.lowercase(), kit)
 
         player sendMessage "&aThe kit cooldown has been reset."
+    }
+
+    @Command(["kit admin cooldown reset all", "kit admin cooldown reset all"], permission = "kitpvp.admin.reset.all")
+    @JvmStatic
+    fun kitsAdminCooldownResetAll(player: Player, @Param("kit") kitName: String) {
+        if (!KitsService.kits.containsKey(kitName.lowercase())) {
+            player sendMessage "&cNo kit with the name $kitName found."
+            return
+        }
+
+        ProfileService.service.retrieveAll().forEach {
+            it.kitCooldowns.remove(kitName.lowercase())
+            it.save()
+        }
+    }
+
+    @Command(["kit admin cooldown reset", "kit admin cooldown reset"], permission = "kitpvp.admin.reset")
+    @JvmStatic
+    fun kitsAdminCooldownReset(player: Player, @Param("kit") kitName: String, @Param("player") target: Player) {
+        if (!KitsService.kits.containsKey(kitName.lowercase())) {
+            player sendMessage "&cNo kit with the name $kitName found."
+            return
+        }
+
+        player.getProfile().also {
+            it.kitCooldowns.remove(kitName.lowercase())
+            it.save()
+        }
     }
 
     fun isOnCooldown(player: Player, kit: Kit): Boolean {
